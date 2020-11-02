@@ -4,20 +4,14 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 
 type Props = {
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
 };
 
-export const DefaultLayout: React.FC<Props> = ({
-  header,
-  children,
-  footer,
-}) => {
+export const DefaultLayout: React.FC<{}> = ({ children }) => {
   return (
-    <div>
-      {header ? <div>{header}</div> : <Header />}
-      <div>{children}</div>
-      {footer ? <div>{footer}</div> : <Footer />}
-    </div>
+    <>
+      <Header />
+      <main id="content">{children}</main>
+      <Footer />
+    </>
   );
 };

@@ -3,3 +3,24 @@
 @tailwind components;
 
 @tailwind utilities;
+
+/* START flexbox sticky footer */
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+}
+
+main#content {
+  flex: 1 0 auto;
+}
+
+footer#footer {
+  flex-shrink: 0;
+}
+/* END flexbox sticky footer */
