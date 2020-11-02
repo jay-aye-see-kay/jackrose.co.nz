@@ -25,7 +25,7 @@ export const Header = () => {
         </div>
       </nav>
 
-      <hr className="my-2"/>
+      <hr className="m-2"/>
     </div>
   );
 };
