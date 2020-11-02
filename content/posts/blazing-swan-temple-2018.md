@@ -1,5 +1,5 @@
 ---
-title: Blazing swan temple 2018
+title: Blazing Swan temple 2018
 created: 2018-06-15
 updated: 2020-11-02
 ---
