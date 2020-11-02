@@ -9,9 +9,9 @@ const mainPages = [
 export const Header = () => {
   return (
     <div id="header">
-      <h1 className="p-4 pb-0 text-3xl text-center">
+      <h2 className="p-4 pb-0 text-3xl text-center">
         <Link href="/">Jack Rose</Link>
-      </h1>
+      </h2>
 
       <nav>
         <div className="px-4 mx-auto max-w-7xl">

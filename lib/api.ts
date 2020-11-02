@@ -1,0 +1,47 @@
+import fs from "fs";
+import { join } from "path";
+import matter from "gray-matter";
+
+const postsDirectory = join(process.cwd(), "content/posts");
+
+export const getPostSlugs = () => {
+  return fs.readdirSync(postsDirectory);
+};
+
+// TODO shape validation
+export type Post = {
+  slug: string;
+  title: string;
+  created: string;
+  updated?: string;
+  content: string;
+};
+
+export const getPostBySlug = (slug: string) => {
+  const realSlug = slug.replace(/\.md$/, ""); // TODO move the .md stripping to getPostSlugs
+  const fullPath = join(postsDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+
+  const post: Post = {
+    slug: realSlug,
+    title: data.title as string,
+    created: (data.created as Date).toJSON(),
+    content,
+  };
+
+  if (data.updated) {
+    post.updated = (data.updated as Date).toJSON();
+  }
+
+  return post;
+};
+
+export const getAllPosts = () => {
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug))
+    // sort posts by date in descending order
+    .sort((post1, post2) => (post1.created > post2.created ? -1 : 1));
+  return posts;
+};
