@@ -1,8 +1,9 @@
-@tailwind base;
+/* purgecss start ignore */
+@import "tailwindcss/base";
+/* purgecss end ignore */
 
-@tailwind components;
-
-@tailwind utilities;
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 main a,
 footer a {
@@ -15,11 +16,11 @@ a {
 }
 
 a:hover {
-  text-shadow: -1px -1px;
+  text-shadow: 1px -1px;
 }
 
 .site-title {
-  text-shadow: -1px -1px;
+  text-shadow: 1px -1px;
 }
 
 .markdown-styles {

@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-import { Post } from "../../lib/api";
+import { Post } from "../lib/api";
 
 const formatDate = (date?: string) => {
   if (!date) return;

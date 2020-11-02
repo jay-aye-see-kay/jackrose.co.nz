@@ -1,5 +1,5 @@
-import "../css/bundle.css";
+import "../css/global.tailwind.css";
 
-export default function ({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
