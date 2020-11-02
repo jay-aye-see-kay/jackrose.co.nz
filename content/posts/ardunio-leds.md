@@ -13,3 +13,5 @@ Because they were wired this way the LED addresses were not logically layed out,
 After the pixels were re-mapped creating patterns was simply a matter of playing with loops. The code is easy to understand (thanks largely to the FastLED library) and can be viewed on github. The video below shows a quick loop of my favorite patterns, the first view from below, and the second from the side.
 
 [Github repo](https://github.com/jay-aye-see-kay/LED_10_arm_show/blob/master/LED_Show_10arm.ino)
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dSxiomgX4mY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
