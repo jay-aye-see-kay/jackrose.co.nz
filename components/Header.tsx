@@ -9,7 +9,7 @@ const mainPages = [
 export const Header = () => {
   return (
     <div id="header">
-      <h2 className="p-4 pb-0 text-3xl text-center">
+      <h2 className="p-4 pb-0 text-3xl text-center site-title">
         <Link href="/">Jack Rose</Link>
       </h2>
 
@@ -25,7 +25,7 @@ export const Header = () => {
         </div>
       </nav>
 
-      <hr className="m-2"/>
+      <hr className="m-2" />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
+import { format } from "date-fns";
 
 import { DefaultLayout } from "../../components/Layouts";
 import { getAllPosts, getPostBySlug, Post } from "../../lib/api";
@@ -15,8 +16,18 @@ type Props = {
 const PostPage = ({ post, content }: Props) => {
   return (
     <DefaultLayout>
-      <h1 className="text-lg font-bold text-center">{post.title}</h1>
-      <div className="max-w-xl m-auto markdown-styles" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="max-w-xl px-1 m-auto">
+        <h1 className="mt-4 text-2xl">{post.title}</h1>
+        <pre>---</pre>
+        <div className="text-xs text-gray-600">
+          Posted: {format(new Date(post.created), "yyyy-MM-dd")}
+        </div>
+        <pre>---</pre>
+        <div
+          className="markdown-styles"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </div>
     </DefaultLayout>
   );
 };

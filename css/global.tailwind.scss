@@ -15,7 +15,17 @@ a {
 }
 
 a:hover {
-  text-shadow: 1px -1px;
+  text-shadow: -1px -1px;
+}
+
+.site-title {
+  text-shadow: -1px -1px;
+}
+
+.markdown-styles {
+  p {
+    @apply mb-2;
+  }
 }
 
 /* START flexbox sticky footer */
