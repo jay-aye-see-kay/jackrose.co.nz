@@ -4,6 +4,20 @@
 
 @tailwind utilities;
 
+main a,
+footer a {
+  @apply text-blue-800;
+  @apply underline;
+}
+
+a {
+  transition: text-shadow 250ms;
+}
+
+a:hover {
+  text-shadow: 1px -1px;
+}
+
 /* START flexbox sticky footer */
 html,
 body,
