@@ -3,7 +3,7 @@ import Link from "next/link";
 const mainPages = [
   { href: "/about", label: "/about" },
   { href: "/cv", label: "/cv" },
-  { href: "/posts", label: "/posts" },
+  { href: "/blog", label: "/blog" },
 ];
 
 export const Header = () => {

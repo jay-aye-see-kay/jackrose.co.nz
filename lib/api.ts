@@ -2,10 +2,10 @@ import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 
-const postsDirectory = join(process.cwd(), "content/posts");
+const blogPostsDirectory = join(process.cwd(), "content/blog");
 
 export const getPostSlugs = () => {
-  return fs.readdirSync(postsDirectory);
+  return fs.readdirSync(blogPostsDirectory);
 };
 
 // TODO shape validation
@@ -19,7 +19,7 @@ export type Post = {
 
 export const getPostBySlug = (slug: string) => {
   const realSlug = slug.replace(/\.md$/, ""); // TODO move the .md stripping to getPostSlugs
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
+  const fullPath = join(blogPostsDirectory, `${realSlug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 

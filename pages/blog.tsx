@@ -19,7 +19,7 @@ const Posts = ({ allPosts }: Props) => {
         <ul>
           {allPosts.map((post) => (
             <li key={post.slug}>
-              <Link href={`post/${post.slug}`}>{post.title}</Link>
+              <Link href={`blog/${post.slug}`}>{post.title}</Link>
             </li>
           ))}
         </ul>
