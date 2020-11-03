@@ -2,7 +2,6 @@ import Link from "next/link";
 
 const mainPages = [
   { href: "/about", label: "/about" },
-  { href: "/cv", label: "/cv" },
   { href: "/blog", label: "/blog" },
 ];
 
