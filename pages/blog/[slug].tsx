@@ -16,8 +16,8 @@ type Props = {
 const PostPage = ({ post, content }: Props) => {
   return (
     <DefaultLayout>
-      <div className="max-w-xl px-1 m-auto">
-        <h1 className="mt-4 text-2xl">{post.title}</h1>
+      <div className="page-content">
+        <h1 className="page-title">{post.title}</h1>
         <PostMeta post={post} />
         <div
           className="markdown-styles"

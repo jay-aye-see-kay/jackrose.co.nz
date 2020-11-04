@@ -8,12 +8,11 @@
 
 main a,
 footer a {
-  @apply text-blue-800;
-  @apply underline;
+  @apply text-blue-800 underline;
 }
 
 a {
-  transition: text-shadow 250ms;
+  transition: text-shadow 200ms;
 }
 
 a:hover {
@@ -22,6 +21,14 @@ a:hover {
 
 .site-title {
   text-shadow: 1px -1px;
+}
+
+.page-title {
+  @apply mt-4 text-2xl;
+}
+
+.page-content {
+  @apply max-w-xl px-1 m-auto;
 }
 
 .markdown-styles {
@@ -50,3 +57,9 @@ footer#footer {
   flex-shrink: 0;
 }
 /* END flexbox sticky footer */
+
+/* I don't actually want to use scss, tailwind provides enough features, but I
+ * don't want so many syntax errors from coc-css, setting the file type to scss
+ * seems like the easy solution here.
+ */
+/* vim: set ft=scss : */
