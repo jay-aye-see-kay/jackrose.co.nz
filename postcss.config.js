@@ -12,8 +12,6 @@ module.exports = {
     "tailwindcss",
     "postcss-nested",
     "autoprefixer",
-    purgecss,
-    // to disable in dev mode:
-    // ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
+    ...(process.env.NODE_ENV === "production" ? [purgecss] : []),
   ],
 };
