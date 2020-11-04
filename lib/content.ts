@@ -4,13 +4,13 @@ import matter from "gray-matter";
 import html from "remark-html";
 import remark from "remark";
 
+const blogPostsDirectory = join(process.cwd(), "content/blog");
+const contentDirectory = join(process.cwd(), "content");
+
 export const markdownToHtml = async (markdown: string) => {
   const result = await remark().use(html).process(markdown);
   return result.toString();
 };
-
-const blogPostsDirectory = join(process.cwd(), "content/blog");
-const contentDirectory = join(process.cwd(), "content");
 
 export const getPostSlugs = () => {
   return fs.readdirSync(blogPostsDirectory);

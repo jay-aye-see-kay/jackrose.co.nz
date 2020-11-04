@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { DefaultLayout } from "../components/Layouts";
 import { ContactDetails } from "../components/ContactDetails";
-import { getMarkdownContent } from "../lib/api";
+import { getMarkdownContent } from "../lib/content";
 
 type Props = {
   content: string;

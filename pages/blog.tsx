@@ -3,7 +3,7 @@ import Link from "next/link";
 import { GetStaticProps } from "next";
 
 import { DefaultLayout } from "../components/Layouts";
-import { getAllPosts, Post } from "../lib/api";
+import { getAllPosts, Post } from "../lib/content";
 
 type Props = {
   allPosts: Post[];

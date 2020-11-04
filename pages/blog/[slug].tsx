@@ -5,8 +5,12 @@ import { useRouter } from "next/router";
 
 import { DefaultLayout } from "../../components/Layouts";
 import { PostMeta } from "../../components/PostMeta";
-import { getAllPosts, getPostBySlug, Post } from "../../lib/api";
-import { markdownToHtml } from "../../lib/markdownToHtml";
+import {
+  Post,
+  getAllPosts,
+  getPostBySlug,
+  markdownToHtml,
+} from "../../lib/content";
 
 type Props = {
   post: Post;
