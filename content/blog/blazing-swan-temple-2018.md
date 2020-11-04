@@ -1,5 +1,6 @@
 ---
-title: Blazing Swan temple 2018
+title: Blazing Swan Temple 2018
+description: A 13.4 meter art project I worked on, then set fire to
 created: 2018-06-15
 updated: 2020-11-02
 ---

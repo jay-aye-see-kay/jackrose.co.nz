@@ -23,6 +23,7 @@ export type Post = {
   created: string;
   updated?: string;
   content: string;
+  description?: string;
 };
 
 export const getPostBySlug = (slug: string) => {
@@ -40,6 +41,10 @@ export const getPostBySlug = (slug: string) => {
 
   if (data.updated) {
     post.updated = (data.updated as Date).toJSON();
+  }
+
+  if (data.description) {
+    post.description = data.description;
   }
 
   return post;

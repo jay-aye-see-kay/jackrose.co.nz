@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Link from "next/link";
 import { GetStaticProps } from "next";
 
 import { DefaultLayout } from "../components/Layouts";
+import { BlogListItem } from "../components/BlogListItem";
 import { getAllPosts, Post } from "../lib/content";
 
 type Props = {
@@ -16,15 +16,18 @@ const Posts = ({ allPosts }: Props) => {
         <title>Posts</title>
       </Head>
       <DefaultLayout>
-        <ul>
-          {allPosts.map((post) => (
-            <li key={post.slug}>
-              <Link href={`blog/${post.slug}`}>{post.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <div className="page-content">
+          <h1 className="page-title">Blog posts</h1>
+          <ul className="mt-4">
+            {allPosts.map((post, i, arr) => (
+              <>
+                <BlogListItem key={post.slug} post={post} />
+                {i !== arr.length - 1 && <div className="text-center">~</div>}
+              </>
+            ))}
+          </ul>
+        </div>
       </DefaultLayout>
-      ;
     </>
   );
 };

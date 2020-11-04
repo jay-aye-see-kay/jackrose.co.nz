@@ -1,5 +1,4 @@
-import { format } from "date-fns";
-
+import { formatDate } from "../lib/datetime";
 import { Post } from "../lib/content";
 
 const AVG_READING_WPM = 200;
@@ -10,11 +9,6 @@ const countWords = (content: string) => {
   const wordCount = Math.round(charCount / AVG_WORD_LENGTH);
   const readingTime = Math.round(wordCount / AVG_READING_WPM);
   return { wordCount, readingTime: readingTime < 1 ? 1 : readingTime };
-};
-
-const formatDate = (date?: string) => {
-  if (!date) return;
-  return format(new Date(date), "yyyy-MM-dd");
 };
 
 type Props = {
