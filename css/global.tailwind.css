@@ -1,5 +1,6 @@
 /* purgecss start ignore */
 @import "tailwindcss/base";
+@import "@fortawesome/fontawesome-svg-core/styles.css";
 /* purgecss end ignore */
 
 @import "tailwindcss/components";
