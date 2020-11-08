@@ -24,6 +24,8 @@ export type Post = {
   updated?: string;
   content: string;
   description?: string;
+  draft?: boolean;
+  archived?: boolean;
 };
 
 export const getPostBySlug = (slug: string) => {
@@ -45,6 +47,14 @@ export const getPostBySlug = (slug: string) => {
 
   if (data.description) {
     post.description = data.description;
+  }
+
+  if (data.draft) {
+    post.draft = data.draft;
+  }
+
+  if (data.archived) {
+    post.archived = data.archived;
   }
 
   return post;

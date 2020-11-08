@@ -13,14 +13,14 @@ const Posts = ({ posts }: Props) => {
   return (
     <>
       <Head>
-        <title>Posts</title>
+        <title>Archived Posts</title>
       </Head>
       <DefaultLayout>
         <div className="page-content">
           <h1 className="page-title">Blog posts</h1>
           <BlogList
             posts={posts}
-            lastLink={{ label: "Archived posts »", href: "/blog-archive" }}
+            lastLink={{ label: "« Back to posts", href: "/blog" }}
           />
         </div>
       </DefaultLayout>
@@ -30,7 +30,7 @@ const Posts = ({ posts }: Props) => {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const allPosts = getAllPosts();
-  const posts = allPosts.filter((post) => !post.archived && !post.draft);
+  const posts = allPosts.filter((post) => post.archived && !post.draft);
   return {
     props: { posts },
   };
