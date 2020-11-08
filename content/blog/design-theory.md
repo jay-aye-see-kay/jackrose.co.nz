@@ -1,14 +1,16 @@
 ---
-title: "Customer Site: Longreach Recruitment"
+title: "Customer Site: Design Theory"
 created: 2018-06-04
 archived: true
 ---
-Longreach recruitment is a new small recruitment agency in Perth, Australia. They wanted a simple but effective site.
+Design Theory is a medium size architectural design company in Perth, Australia. Their website was getting old and they wanted something to match their modern design style.
 
-The interesting part of this site was the angled background images. As jpeg does not support transperancy, and pngs don’t store photos efficiently, I used a combination of jpegs with colored svg overlays. While simple to implement on the modern browsers, this required extensive trial and error to work well on IE11.
+This site required a lot of custom layout so we used the Geneisis starter theme, which provides basic functionality with no layout or styles. The portfolio of past work was built using custom post types with custom fields so the client could enter new work themselves.
 
-The end result was a professional modern site that loads quick crisp images.
+The image carousel on each project page had to be perfect to show off the clients work properly. We could not find a Wordpress plugin that was up to standard so we used slick slider, this was an awesome js library to work with and the site came out great.
+
+A unique feature on this site was the tile image gallery (show on the screenshot below). I managed to achieve this effect with just two css selectors. And with a few additional media queries it looks great on tablets and phones too.
 
 Design by Josh from [Superminimal](https://superminimal.com.au/), development by me.
 
-[longreachrecruitment.com.au](https://longreachrecruitment.com.au)
+[designtheory.com.au](https://designtheory.com.au)
