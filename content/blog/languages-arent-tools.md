@@ -1,6 +1,7 @@
 ---
 title: Your programming language is not a tool
 created: 2020-11-04
+draft: true
 ---
 
 While discussing programming languages, developers will often use the metaphor that their programming language is their tool, like a builder or a chef we prioritise a sharp, safe, or reliable tools. We will help justify our choice of language based on this metaphor, that our programming language is just like a chef's knife or a builder's chisel.
