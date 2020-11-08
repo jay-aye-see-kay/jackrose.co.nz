@@ -3,7 +3,8 @@ import { GetStaticProps } from "next";
 
 import { DefaultLayout } from "../components/Layouts";
 import { BlogList } from "../components/BlogList";
-import { getAllPosts, Post } from "../lib/content";
+import { getAllPosts } from "../lib/content";
+import { Post } from "../lib/codecs";
 
 type Props = {
   posts: Post[];

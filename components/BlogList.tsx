@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { BlogListItem } from "../components/BlogListItem";
-import { Post } from "../lib/content";
+import { Post } from "../lib/codecs";
 
 type Props = {
   posts: Post[];

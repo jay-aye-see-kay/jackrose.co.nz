@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Post } from "../lib/content";
+import { Post } from "../lib/codecs";
 import { formatDate } from "../lib/datetime";
 
 type Props = {

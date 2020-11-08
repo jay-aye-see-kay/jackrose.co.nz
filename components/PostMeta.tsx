@@ -1,5 +1,5 @@
 import { formatDate } from "../lib/datetime";
-import { Post } from "../lib/content";
+import { Post } from "../lib/codecs";
 
 const AVG_READING_WPM = 200;
 const AVG_WORD_LENGTH = 5;

@@ -2,19 +2,14 @@ import { GetStaticProps, GetStaticPaths } from "next";
 
 import { DefaultLayout } from "../../components/Layouts";
 import { PostMeta } from "../../components/PostMeta";
-import {
-  Post,
-  getAllPosts,
-  getPostBySlug,
-  markdownToHtml,
-} from "../../lib/content";
+import { getAllPosts, getPostBySlug } from "../../lib/content";
+import { Post } from "../../lib/codecs";
 
 type Props = {
   post: Post;
-  content: string;
 };
 
-const PostPage = ({ post, content }: Props) => {
+const PostPage = ({ post }: Props) => {
   return (
     <DefaultLayout>
       <div className="page-content">
@@ -22,7 +17,7 @@ const PostPage = ({ post, content }: Props) => {
         <PostMeta post={post} />
         <div
           className="markdown-styles"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
     </DefaultLayout>
@@ -34,9 +29,8 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     throw new Error("invalid slug");
   }
   const post = getPostBySlug(params.slug);
-  const content = await markdownToHtml(post.content);
   return {
-    props: { post, content },
+    props: { post },
   };
 };
 

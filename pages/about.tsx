@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { DefaultLayout } from "../components/Layouts";
 import { ContactDetails } from "../components/ContactDetails";
-import { getMarkdownContent } from "../lib/content";
+import { readMarkdownFile } from "../lib/content";
 
 type Props = {
   content: string;
@@ -23,7 +23,7 @@ const About = ({ content }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { content } = await getMarkdownContent("about");
+  const { content } = readMarkdownFile("about");
   return {
     props: { content },
   };

@@ -4,60 +4,36 @@ import matter from "gray-matter";
 import html from "remark-html";
 import remark from "remark";
 
+import { Post, decodePostMeta } from "./codecs";
+
 const blogPostsDirectory = join(process.cwd(), "content/blog");
 const contentDirectory = join(process.cwd(), "content");
 
-export const markdownToHtml = async (markdown: string) => {
-  const result = await remark().use(html).process(markdown);
-  return result.toString();
-};
+export const markdownToHtml = (markdown: string) =>
+  remark().use(html).processSync(markdown).toString();
 
 export const getPostSlugs = () => {
   return fs.readdirSync(blogPostsDirectory);
 };
 
-// TODO shape validation
-export type Post = {
-  slug: string;
-  title: string;
-  created: string;
-  updated?: string;
-  content: string;
-  description?: string;
-  draft?: boolean;
-  archived?: boolean;
-};
+export const getPostBySlug = (filename: string): Post => {
+  const slug = filename.replace(/\.md$/, "");
+  const { meta, content } = readMarkdownFile(filename, blogPostsDirectory);
 
-export const getPostBySlug = (slug: string) => {
-  const realSlug = slug.replace(/\.md$/, ""); // TODO move the .md stripping to getPostSlugs
-  const fullPath = join(blogPostsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+  if (meta.created instanceof Date) {
+    meta.created = meta.created.toJSON();
+  }
+  if (meta.updated instanceof Date) {
+    meta.updated = meta.updated.toJSON();
+  }
 
-  const post: Post = {
-    slug: realSlug,
-    title: data.title as string,
-    created: (data.created as Date).toJSON(),
+  const postMeta = decodePostMeta(meta);
+
+  return {
+    ...postMeta,
     content,
+    slug,
   };
-
-  if (data.updated) {
-    post.updated = (data.updated as Date).toJSON();
-  }
-
-  if (data.description) {
-    post.description = data.description;
-  }
-
-  if (data.draft) {
-    post.draft = data.draft;
-  }
-
-  if (data.archived) {
-    post.archived = data.archived;
-  }
-
-  return post;
 };
 
 export const getAllPosts = () => {
@@ -69,12 +45,18 @@ export const getAllPosts = () => {
   return posts;
 };
 
-export const getMarkdownContent = async (filename: string) => {
-  const fullPath = join(contentDirectory, `${filename}.md`);
+/**
+ * Read markdown file from disk and return it's front matter separated
+ */
+export const readMarkdownFile = (filename: string, dir = contentDirectory) => {
+  if (!filename.includes(".")) {
+    filename += ".md";
+  }
+  const fullPath = join(dir, filename);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const parsed = matter(fileContents);
-  const content = await markdownToHtml(parsed.content);
+  const content = markdownToHtml(parsed.content);
 
   return {
     meta: parsed.data,
