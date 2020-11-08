@@ -26,6 +26,7 @@ export const PostMeta = ({ post }: Props) => {
       <div>
         Reading time: {readingTime}min ({wordCount} words)
       </div>
+      {post.draft && <div>Draft: true</div>}
       ---
     </pre>
   );

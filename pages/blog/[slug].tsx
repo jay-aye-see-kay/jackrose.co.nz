@@ -1,7 +1,4 @@
-import Head from "next/head";
-import Link from "next/link";
 import { GetStaticProps, GetStaticPaths } from "next";
-import { useRouter } from "next/router";
 
 import { DefaultLayout } from "../../components/Layouts";
 import { PostMeta } from "../../components/PostMeta";
@@ -44,7 +41,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts();
+  let posts = getAllPosts();
+
+  // Don't build draft posts in prod
+  if (process.env.NODE_ENV === "production") {
+    posts = posts.filter((post) => !post.draft);
+  }
+
   return {
     paths: posts.map((post) => ({
       params: { slug: post.slug },
