@@ -29,3 +29,15 @@ htmlBuildFiles.forEach((filename) => {
 jsBuildFiles.forEach((filename) => {
   fs.unlinkSync(filename);
 });
+
+// Quickfix: move all foo.html files to foo/index.html so s3 can serve them
+htmlBuildFiles.forEach((filePath) => {
+  // leave index.html files alone
+  if (filePath.endsWith("index.html")) return;
+
+  const newDir = filePath.replace(/\.html$/, "");
+  const newFilePath = filePath.replace(/\.html$/, "");
+
+  fs.mkdirSync(newDir, { recursive: true });
+  fs.renameSync(filePath, newFilePath);
+});
