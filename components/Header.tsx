@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <header
       id="header"
-      className="mx-auto mt-2 mb-8 text-black1 bg-white1"
+      className="mx-auto mt-4 mb-8 text-black1 bg-white1"
       style={{ boxShadow: "0.5rem 1rem black" }}
     >
       <div className="px-10 py-3 mx-1 my-2 border-2 border-black1">

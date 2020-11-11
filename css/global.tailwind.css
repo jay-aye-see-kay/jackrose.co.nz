@@ -34,7 +34,7 @@ a:focus {
 
 /* START general purpose classes */
 .page-content {
-  @apply max-w-xl px-1 mx-auto;
+  @apply max-w-xl px-2 mx-auto;
 }
 .markdown-styles {
   p {
