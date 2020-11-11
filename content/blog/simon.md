@@ -11,4 +11,4 @@ I decided to use Vue without a build step so that I could display it on Codepen 
 
 My apologies if you are on mobile, this project will break completely on screens less than 500px wide (but it should be okay if you turn your screen).
 
-https://codepen.io/jay-aye-see-kay/pen/GyEQRm
+[https://codepen.io/jay-aye-see-kay/pen/GyEQRm](https://codepen.io/jay-aye-see-kay/pen/GyEQRm)

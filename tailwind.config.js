@@ -1,12 +1,31 @@
 module.exports = {
-  future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-  },
   purge: false,
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        black: "#24292e",
+        black1: "#41484f",
+        black2: "#6a737d",
+        boldblue: "#4dacfd",
+        blue: "#005cc5",
+        boldgreen: "#3ebc5c",
+        boldorange: "#f18338",
+        darkblue: "#032f62",
+        darkpurple: "#45267d",
+        darkred: "#b31d28",
+        green: "#22863a",
+        orange: "#e36209",
+        purple: "#6f42c1",
+        red: "#d73a49",
+        white0: "#fafbfc",
+        white1: "#d2d4d6",
+        white2: "#abaeb1",
+        white3: "#848a8e",
+        white4: "#63686c",
+        white5: "#42484c",
+      },
+    },
   },
   variants: {},
   plugins: [],
-}
+};

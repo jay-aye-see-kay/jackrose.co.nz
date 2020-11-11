@@ -7,24 +7,28 @@ const mainPages = [
 
 export const Header = () => {
   return (
-    <div id="header">
-      <h2 className="p-4 pb-0 text-3xl text-center site-title">
-        <Link href="/">Jack Rose</Link>
-      </h2>
+    <header
+      id="header"
+      className="mx-auto mt-2 mb-8 text-black1 bg-white1"
+      style={{ boxShadow: "0.5rem 1rem black" }}
+    >
+      <div className="px-10 py-3 mx-1 my-2 border-2 border-black1">
+        <h2 className="mb-1 text-3xl font-semibold text-center text-black">
+          <Link href="/">Jack Rose</Link>
+        </h2>
 
-      <nav>
-        <div className="px-4 mx-auto max-w-7xl">
-          <ul className="flex flex-row justify-center">
-            {mainPages.map(({ href, label }) => (
-              <li key={href} className="p-2">
-                <Link href={href}>{label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
-
-      <hr className="m-2" />
-    </div>
+        <nav>
+          <div className="px-4 mx-auto max-w-7xl">
+            <ul className="flex flex-row justify-center">
+              {mainPages.map(({ href, label }) => (
+                <li key={href} className="p-2 underline">
+                  <Link href={href}>{label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 };

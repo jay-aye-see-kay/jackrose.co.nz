@@ -8,34 +8,40 @@
 
 main a,
 footer a {
-  @apply text-blue-800 underline;
+  @apply underline text-boldblue;
 }
 
+/* START global styles */
+html {
+  font-family: Monaco, "Lucida Console", monospace;
+  @apply bg-black text-white1;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-white0;
+}
 a {
   transition: text-shadow 200ms;
 }
-
-a:hover {
-  text-shadow: 1px -1px;
+a:hover,
+a:focus {
+  text-shadow: 1px 1px;
 }
+/* END global styles */
 
-.site-title {
-  text-shadow: 1px -1px;
-}
-
-.page-title {
-  @apply mt-4 text-2xl;
-}
-
+/* START general purpose classes */
 .page-content {
-  @apply max-w-xl px-1 m-auto;
+  @apply max-w-xl px-1 mx-auto;
 }
-
 .markdown-styles {
   p {
     @apply mb-2;
   }
 }
+/* END general purpose classes */
 
 /* START flexbox sticky footer */
 html,

@@ -12,17 +12,15 @@ type Props = {
 
 const Posts = ({ posts }: Props) => {
   return (
-    <>
-      <DefaultLayout>
-        <div className="page-content">
-          <BlogList
-            posts={posts}
-            lastLink={{ label: "Archived posts »", href: "/blog-archive" }}
-          />
-        </div>
-      </DefaultLayout>
-    </>
+    <DefaultLayout>
+      <div className="page-content">
         <PageTitle>Blog posts</PageTitle>
+        <BlogList
+          posts={posts}
+          lastLink={{ label: "Archived posts »", href: "/blog-archive" }}
+        />
+      </div>
+    </DefaultLayout>
   );
 };
 

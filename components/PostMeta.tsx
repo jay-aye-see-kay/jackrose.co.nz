@@ -19,15 +19,16 @@ export const PostMeta = ({ post }: Props) => {
   const { wordCount, readingTime } = countWords(post.content);
 
   return (
-    <pre className="px-1 text-xs text-gray-600">
-      ---
-      <div>Posted: {formatDate(post.created)}</div>
-      {post.updated && <div>Updated: {formatDate(post.updated)}</div>}
-      <div>
-        Reading time: {readingTime}min ({wordCount} words)
-      </div>
-      {post.draft && <div>Draft: true</div>}
-      ---
-    </pre>
+    <div className="py-4 my-4 bg-black1">
+      <pre className="text-sm text-white page-content">
+        <div>Posted: {formatDate(post.created)}</div>
+        {post.updated && <div>Updated: {formatDate(post.updated)}</div>}
+        <div>
+          Reading time: {readingTime}min ({wordCount} words)
+        </div>
+        {post.draft && <div>Draft: true</div>}
+        {post.archived && <div>_This post has been archived_</div>}
+      </pre>
+    </div>
   );
 };
