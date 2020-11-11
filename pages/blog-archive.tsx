@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { GetStaticProps } from "next";
 
 import { DefaultLayout } from "../components/Layouts";
 import { BlogList } from "../components/BlogList";
 import { getAllPosts } from "../lib/content";
 import { Post } from "../lib/codecs";
+import { PageTitle } from "../components/PageTitle";
 
 type Props = {
   posts: Post[];
@@ -13,12 +13,9 @@ type Props = {
 const Posts = ({ posts }: Props) => {
   return (
     <>
-      <Head>
-        <title>Archived Posts</title>
-      </Head>
       <DefaultLayout>
         <div className="page-content">
-          <h1 className="page-title">Blog posts</h1>
+          <PageTitle>Archived blog posts</PageTitle>
           <BlogList
             posts={posts}
             lastLink={{ label: "« Back to posts", href: "/blog" }}

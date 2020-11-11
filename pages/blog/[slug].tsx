@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 
 import { DefaultLayout } from "../../components/Layouts";
 import { PostMeta } from "../../components/PostMeta";
+import { PageTitle } from "../../components/PageTitle";
 import { getAllPosts, getPostBySlug } from "../../lib/content";
 import { Post } from "../../lib/codecs";
 
@@ -13,8 +14,8 @@ const PostPage = ({ post }: Props) => {
   return (
     <DefaultLayout>
       <div className="page-content">
-        <h1 className="page-title">{post.title}</h1>
         <PostMeta post={post} />
+        <PageTitle>{post.title}</PageTitle>
         <div
           className="markdown-styles"
           dangerouslySetInnerHTML={{ __html: post.content }}
