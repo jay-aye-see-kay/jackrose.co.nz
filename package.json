@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build-without-js": "next build && next export && yarn remove-js",
     "remove-js": "yarn node ./scripts/remove-static-js.js",
     "start": "next start"
   },
