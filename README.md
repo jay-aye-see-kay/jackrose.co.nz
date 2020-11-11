@@ -5,4 +5,4 @@ yarn dev
 ```
 
 ## Deploying
-- TODO setup GH action to push to S3
+- Just pust or merge to the master branch
