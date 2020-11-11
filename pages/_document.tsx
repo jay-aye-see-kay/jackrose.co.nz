@@ -10,6 +10,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
+        <link rel="icon" href="data:," />
         <body>
           <Main />
           <NextScript />
