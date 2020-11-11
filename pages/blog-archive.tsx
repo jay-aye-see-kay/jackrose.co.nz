@@ -21,7 +21,7 @@ const Posts = ({ posts }: Props) => {
           <h1 className="page-title">Blog posts</h1>
           <BlogList
             posts={posts}
-            lastLink={{ label: "« Back to posts", href: "/blog-posts" }}
+            lastLink={{ label: "« Back to posts", href: "/blog" }}
           />
         </div>
       </DefaultLayout>

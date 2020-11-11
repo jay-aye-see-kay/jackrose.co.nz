@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const mainPages = [
   { href: "/about", label: "/about" },
-  { href: "/blog-posts", label: "/blog" },
+  { href: "/blog", label: "/blog" },
 ];
 
 export const Header = () => {

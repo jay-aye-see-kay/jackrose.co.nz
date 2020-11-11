@@ -31,8 +31,14 @@ jsBuildFiles.forEach((filename) => {
   fs.unlinkSync(filename);
 });
 
-// Quickfix: makes copies of all html files without the suffix for s3 to host them
+// Quickfix: move all foo.html files to foo/index.html so s3 can serve them
 htmlBuildFiles.forEach((filePath) => {
-  const newFilePath = filePath.replace(/\.html$/, "");
-  fs.copyFileSync(filePath, newFilePath)
+  // leave index.html files alone
+  if (filePath.endsWith("index.html")) return;
+
+  const newDir = filePath.replace(/\.html$/, "");
+  const newFilePath = path.join(newDir, "index.html");
+
+  fs.mkdirSync(newDir, { recursive: true });
+  fs.renameSync(filePath, newFilePath);
 });
