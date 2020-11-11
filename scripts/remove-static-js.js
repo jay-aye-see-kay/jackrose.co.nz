@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const cheerio = require("cheerio");
 const glob = require("glob");
 
@@ -36,7 +37,7 @@ htmlBuildFiles.forEach((filePath) => {
   if (filePath.endsWith("index.html")) return;
 
   const newDir = filePath.replace(/\.html$/, "");
-  const newFilePath = filePath.replace(/\.html$/, "");
+  const newFilePath = path.join(newDir, "index.html");
 
   fs.mkdirSync(newDir, { recursive: true });
   fs.renameSync(filePath, newFilePath);
