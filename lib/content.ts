@@ -1,13 +1,14 @@
 import fs from "fs";
-import { join } from "path";
+import path from "path";
 import matter from "gray-matter";
 import html from "remark-html";
 import remark from "remark";
 
 import { Post, decodePostMeta } from "./codecs";
 
-const blogPostsDirectory = join(process.cwd(), "content/blog");
-const contentDirectory = join(process.cwd(), "content");
+const blogPostsDirectoryRelative = "content/blog";
+const blogPostsDirectory = path.join(process.cwd(), blogPostsDirectoryRelative);
+const contentDirectory = path.join(process.cwd(), "content");
 
 export const markdownToHtml = (markdown: string) =>
   remark().use(html).processSync(markdown).toString();
@@ -33,6 +34,7 @@ export const getPostBySlug = (filename: string): Post => {
     ...postMeta,
     content,
     slug,
+    path: path.join(blogPostsDirectoryRelative, `${filename}.md`),
   };
 };
 
@@ -52,7 +54,7 @@ export const readMarkdownFile = (filename: string, dir = contentDirectory) => {
   if (!filename.includes(".")) {
     filename += ".md";
   }
-  const fullPath = join(dir, filename);
+  const fullPath = path.join(dir, filename);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const parsed = matter(fileContents);

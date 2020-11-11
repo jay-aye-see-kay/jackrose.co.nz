@@ -20,6 +20,7 @@ const PostPage = ({ post }: Props) => {
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
+      <LinkToPostSource post={post} />
     </DefaultLayout>
   );
 };
