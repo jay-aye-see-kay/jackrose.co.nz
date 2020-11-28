@@ -14,7 +14,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          // TODO whitelist this tag in the remove js script
+          {/* TODO whitelist this tag in the remove js script */}
           <script
             data-goatcounter="https://jackrose.goatcounter.com/count"
             async
