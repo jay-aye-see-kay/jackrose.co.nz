@@ -1,0 +1,22 @@
+{
+  "/blog-images/me.jpg": {
+    "height": 460,
+    "width": 460,
+    "type": "jpg"
+  },
+  "/blog-images/temple_back.jpg": {
+    "height": 800,
+    "width": 1200,
+    "type": "jpg"
+  },
+  "/blog-images/temple_burning.jpg": {
+    "height": 800,
+    "width": 1200,
+    "type": "jpg"
+  },
+  "/blog-images/temple_front.jpg": {
+    "height": 800,
+    "width": 1200,
+    "type": "jpg"
+  }
+}

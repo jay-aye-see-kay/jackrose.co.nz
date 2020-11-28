@@ -1,30 +1,24 @@
+import React from "react";
 import Link from "next/link";
 import { GetStaticProps, GetStaticPaths } from "next";
 
 import { DefaultLayout } from "../../components/Layouts";
 import { PostMeta } from "../../components/PostMeta";
-import { PageTitle } from "../../components/PageTitle";
 import { getAllPosts, getPostBySlug } from "../../lib/content";
 import { Post } from "../../lib/codecs";
 import { LinkToPostSource } from "../../components/LinkToPostSource";
+import { markdownToReact } from "../../lib/parseMarkdown";
 
 type Props = {
   post: Post;
 };
 
 const PostPage = ({ post }: Props) => {
+  console.log('markdownToReact(post.markdown)', markdownToReact(post.markdown));
   return (
     <DefaultLayout>
-      <div className="page-content">
-        <PageTitle>{post.title}</PageTitle>
-      </div>
       <PostMeta post={post} />
-      <div className="page-content">
-        <div
-          className="markdown-styles"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-      </div>
+      <div className="markdown-content">{markdownToReact(post.markdown)}</div>
       <LinkToPostSource post={post} />
       <div className="mb-8 text-center page-content">
         {!post.archived ? (

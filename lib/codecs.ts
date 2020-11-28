@@ -24,4 +24,9 @@ export const decodePostMeta = (data: unknown) => {
 };
 
 export type PostMeta = t.TypeOf<typeof MetaCodec>;
-export type Post = PostMeta & { slug: string; content: string; path: string };
+export type Post = PostMeta & {
+  slug: string;
+  content: string;
+  markdown: string;
+  path: string;
+};

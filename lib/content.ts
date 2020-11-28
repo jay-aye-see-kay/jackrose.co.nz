@@ -1,17 +1,33 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import html from "remark-html";
-import remark from "remark";
+
+import unified from "unified";
+import remarkParse from "remark-parse";
+import remark2rehype from "remark-rehype";
+import rehype2react from "rehype-react";
 
 import { Post, decodePostMeta } from "./codecs";
+
+// TMP
+import React from "react";
+import { BlogPostImage } from "../components/BlogPostImage";
 
 const blogPostsDirectoryRelative = "content/blog";
 const blogPostsDirectory = path.join(process.cwd(), blogPostsDirectoryRelative);
 const contentDirectory = path.join(process.cwd(), "content");
 
+const markdownProcessor = unified()
+  .use(remarkParse)
+  .use(remark2rehype)
+  .use(rehype2react, {
+    createElement: React.createElement,
+    // @ts-ignore
+    components: { img: BlogPostImage },
+  });
+
 export const markdownToHtml = (markdown: string) =>
-  remark().use(html).processSync(markdown).toString();
+  markdownProcessor.processSync(markdown);
 
 export const getPostSlugs = () => {
   return fs.readdirSync(blogPostsDirectory);
@@ -19,7 +35,10 @@ export const getPostSlugs = () => {
 
 export const getPostBySlug = (filename: string): Post => {
   const slug = filename.replace(/\.md$/, "");
-  const { meta, content } = readMarkdownFile(filename, blogPostsDirectory);
+  const { meta, content, markdown } = readMarkdownFile(
+    filename,
+    blogPostsDirectory
+  );
 
   if (meta.created instanceof Date) {
     meta.created = meta.created.toJSON();
@@ -32,7 +51,8 @@ export const getPostBySlug = (filename: string): Post => {
 
   return {
     ...postMeta,
-    content,
+    content: content.toString(),
+    markdown,
     slug,
     path: path.join(blogPostsDirectoryRelative, `${filename}.md`),
   };
@@ -63,5 +83,6 @@ export const readMarkdownFile = (filename: string, dir = contentDirectory) => {
   return {
     meta: parsed.data,
     content,
+    markdown: parsed.content,
   };
 };

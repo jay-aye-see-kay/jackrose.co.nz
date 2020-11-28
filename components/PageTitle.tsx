@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import { H1 } from "./Text";
+
 type Props = {
   pageTitle?: string;
   children: string;
@@ -11,7 +13,7 @@ export const PageTitle = ({ pageTitle, children }: Props) => {
       <Head>
         <title>{pageTitle || children}</title>
       </Head>
-      <h1 className="mt-4 text-2xl text-boldgreen"># {children}</h1>
+      <H1>{children}</H1>
     </>
   );
 };

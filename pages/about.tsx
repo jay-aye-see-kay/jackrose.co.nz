@@ -1,22 +1,20 @@
 import { GetStaticProps } from "next";
 import { DefaultLayout } from "../components/Layouts";
 import { ContactDetails } from "../components/ContactDetails";
-import { readMarkdownFile } from "../lib/content";
 import { PageTitle } from "../components/PageTitle";
+import { readMarkdownFile } from "../lib/content";
+import { markdownToReact } from "../lib/parseMarkdown";
 
 type Props = {
-  content: string;
+  markdown: string;
 };
 
-const About = ({ content }: Props) => {
+const About = ({ markdown }: Props) => {
   return (
     <DefaultLayout>
       <div className="page-content">
         <PageTitle>About me</PageTitle>
-        <div
-          className="mt-4 markdown-styles"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        {markdownToReact(markdown)}
         <ContactDetails />
       </div>
     </DefaultLayout>
@@ -24,9 +22,9 @@ const About = ({ content }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { content } = readMarkdownFile("about");
+  const { markdown } = readMarkdownFile("about");
   return {
-    props: { content },
+    props: { markdown },
   };
 };
 

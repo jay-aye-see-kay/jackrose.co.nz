@@ -1,6 +1,8 @@
 import { formatDate } from "../lib/datetime";
 import { Post } from "../lib/codecs";
 
+import { PageTitle } from "./PageTitle";
+
 const AVG_READING_WPM = 200;
 const AVG_WORD_LENGTH = 5;
 
@@ -19,7 +21,8 @@ export const PostMeta = ({ post }: Props) => {
   const { wordCount, readingTime } = countWords(post.content);
 
   return (
-    <div className="py-4 my-4 bg-black1">
+    <div className="pt-2 pb-4 my-4 bg-black1">
+      <PageTitle>{post.title}</PageTitle>
       <pre className="text-sm text-white page-content">
         <div>Posted: {formatDate(post.created)}</div>
         {post.updated && <div>Updated: {formatDate(post.updated)}</div>}
