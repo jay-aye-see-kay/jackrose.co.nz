@@ -22,7 +22,19 @@ h3,
 h4,
 h5,
 h6 {
-  @apply text-white0;
+  @apply text-boldgreen;
+}
+h2 {
+  @apply text-lg mt-4;
+  &::before {
+    content: "## ";
+  }
+}
+h3 {
+  @apply mt-4;
+  &::before {
+    content: "### ";
+  }
 }
 a {
   transition: text-shadow 200ms;
@@ -39,7 +51,7 @@ a:focus {
 }
 .markdown-styles {
   p {
-    @apply mb-2;
+    @apply mb-4;
   }
 }
 /* END general purpose classes */
