@@ -15,7 +15,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           <script
-            data-keep-js
+            data-keep-script
             data-goatcounter="https://jackrose.goatcounter.com/count"
             async
             src="//gc.zgo.at/count.js"
