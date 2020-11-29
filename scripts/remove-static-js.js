@@ -18,7 +18,7 @@ const htmlBuildFiles = glob.sync(`${BUILD_DIR}/**/*.html`);
 const removeJsFromHtml = (filename) => {
   const originalHtml = fs.readFileSync(filename, "utf8");
   const $ = cheerio.load(originalHtml);
-  $("script").remove();
+  $("script:not([data-keep-js])").remove();
   $("link[as=script]").remove();
   fs.writeFileSync(filename, $.root().html());
 };
