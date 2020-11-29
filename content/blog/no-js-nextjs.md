@@ -1,7 +1,6 @@
 ---
 title: '"No JS" NextJS'
 created: 2020-11-29
-draft: true
 ---
 
 ## Summary
