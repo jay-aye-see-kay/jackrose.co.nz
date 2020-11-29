@@ -44,6 +44,23 @@ a:focus {
 }
 /* END general purpose classes */
 
+/* START code blocks */
+pre {
+  margin: 1rem 0;
+}
+@media screen and (min-width: 43rem) {
+  pre {
+    margin-left: -3rem;
+    margin-right: -3rem;
+  }
+}
+
+.hljs {
+  padding: 1rem - 3rem;
+  border-radius: 0.5rem;
+}
+/* END code blocks */
+
 /* START flexbox sticky footer */
 html,
 body,
