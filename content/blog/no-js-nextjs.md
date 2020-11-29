@@ -35,7 +35,8 @@ In your `package.json` you should have a `build` script, with the value `next bu
 {
   "scripts": {
     "build-with-js": "next build",
-    "build": "next build && next export && yarn node ./scripts/remove-js.js",
+    "export": "next build, && next export",
+    "build": "yarn export && yarn node ./scripts/remove-js.js",
     ...
   }
 }
