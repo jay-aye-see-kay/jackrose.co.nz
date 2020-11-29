@@ -24,13 +24,13 @@ h5,
 h6 {
   @apply text-boldgreen;
 }
-h2 {
+main h2 {
   @apply text-lg mt-4;
   &::before {
     content: "## ";
   }
 }
-h3 {
+main h3 {
   @apply mt-4;
   &::before {
     content: "### ";
