@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import html from "remark-html";
+// @ts-expect-error
+import highlight from "remark-highlight.js";
 import remark from "remark";
 
 import { Post, decodePostMeta } from "./codecs";
@@ -11,7 +13,7 @@ const blogPostsDirectory = path.join(process.cwd(), blogPostsDirectoryRelative);
 const contentDirectory = path.join(process.cwd(), "content");
 
 export const markdownToHtml = (markdown: string) =>
-  remark().use(html).processSync(markdown).toString();
+  remark().use(highlight).use(html).processSync(markdown).toString();
 
 export const getPostSlugs = () => {
   return fs.readdirSync(blogPostsDirectory);
