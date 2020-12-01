@@ -2,6 +2,7 @@
 title: Arduino LED controller
 created: 2018-05-02
 updated: 2020-11-02
+archived: true
 ---
 
 I had some LED strip lighting available and I’d wanted an interesting Arduino project for a while so this was the perfect opportunity.

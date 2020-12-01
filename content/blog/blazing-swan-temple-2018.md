@@ -3,6 +3,7 @@ title: Blazing Swan Temple 2018
 description: A 13.4 meter art project I worked on, then set fire to
 created: 2018-06-15
 updated: 2020-11-02
+archived: true
 ---
 
 Blazing Swan is Perth’s Regional Burning Man event. In 2018 I was lucky enough to be the designer and project lead of the Temple.
