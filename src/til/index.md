@@ -1,5 +1,0 @@
-# TILs
-
-TIL (or today I learned) are short snippets of things I learned and found interesting. I write them down so I can use them as a future reference, and hopefully they'll be helpful to others occasionally too.
-
-They're shorter and lower quality than blog posts, that's the main reason they're separated from posts - to give myself permission to leave these less polished that I otherwise would.

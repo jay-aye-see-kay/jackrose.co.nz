@@ -1,0 +1,19 @@
+<h1>TILS</h1>
+<p>
+  TIL (or today I learned) are short snippets of things I learned and found
+  interesting. I write them down so I can use them as a future reference,
+  and hopefully they'll be helpful to others occasionally too.
+</p>
+<p>
+  They're shorter and lower quality than blog posts, that's the main reason
+  they're separated from posts - to give myself permission to leave these
+  less polished that I otherwise would.
+</p>
+<h2>TIL pages:</h2>
+<ul>
+  {% for page in search.pages("type=til") %}
+    <li>
+      <a href="{{ page.data.url }}">{{ page.data.url }}</a>
+    </li>
+  {% endfor %}
+</ul>
