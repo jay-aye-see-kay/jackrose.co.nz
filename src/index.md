@@ -8,11 +8,11 @@ If you're wondering why the styling is so basic and there's no navbar, it's beca
 
 ## Links around the site
 
-- posts:
-  - [details (and progress) of the deal](/posts/the-deal)
+- Posts:
+  - [details (and progress) of "the deal"](/posts/the-deal)
 - TILs:
   - [what are TILs?](/til)
-  - [moving direnv's cache](/til/moving-direnvs-cache)
+  - [moving direnv's cache](/til/customizing-direnv-cache-location)
 
 ## Contact me
 

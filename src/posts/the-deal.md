@@ -11,6 +11,8 @@ In approximate order, the features want to add are:
 - make external links look different to internal ones
 - favicon and page titles
 - [add reading info to posts](https://lume.land/plugins/reading_info/) (post date/updated, word count, reading time)
+- link posts to their source on github to view their history
 - a post tagging system and a tags page
 - [site search](https://lume.land/plugins/pagefind/)
 - deploy to AWS (s3 and cloudfront) instead of Vercel
+- comments based on github issues
