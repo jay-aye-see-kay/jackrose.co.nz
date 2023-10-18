@@ -1,3 +1,7 @@
+---
+published: 2023-10-17
+---
+
 # Customizing direnv cache location
 
 ## Background
