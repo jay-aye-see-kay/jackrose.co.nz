@@ -10,13 +10,4 @@
   less polished that I otherwise would.
 </p>
 <h2>TIL pages:</h2>
-<ul>
-  {% for page in search.pages("type=til") %}
-    <li>
-      <div style="display: flex;justify-content: space-between;">
-        <a href="{{ page.data.url }}">{{ page.src.slug }}</a>
-        <em style="color: #777">[{{ page.data.date | date('HUMAN_DATE') }}]<em>
-      </div>
-    </li>
-  {% endfor %}
-</ul>
+{{ comp.til_list() | safe }}
