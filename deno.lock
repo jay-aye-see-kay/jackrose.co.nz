@@ -7,6 +7,7 @@
       "npm:highlight.js@11.8.0": "npm:highlight.js@11.8.0",
       "npm:markdown-it-attrs@4.1.6": "npm:markdown-it-attrs@4.1.6_markdown-it@13.0.2",
       "npm:markdown-it-deflist@2.1.0": "npm:markdown-it-deflist@2.1.0",
+      "npm:markdown-it-task-lists": "npm:markdown-it-task-lists@2.1.1",
       "npm:markdown-it@13.0.2": "npm:markdown-it@13.0.2",
       "npm:nunjucks@3.2.4": "npm:nunjucks@3.2.4",
       "npm:postcss-import@15.1.0": "npm:postcss-import@15.1.0_postcss@8.4.31",
@@ -318,6 +319,10 @@
       },
       "markdown-it-deflist@2.1.0": {
         "integrity": "sha512-3OuqoRUlSxJiuQYu0cWTLHNhhq2xtoSFqsZK8plANg91+RJQU1ziQ6lA2LzmFAEes18uPBsHZpcX6We5l76Nzg==",
+        "dependencies": {}
+      },
+      "markdown-it-task-lists@2.1.1": {
+        "integrity": "sha512-TxFAc76Jnhb2OUu+n3yz9RMu4CwGfaT788br6HhEDlvWfdeJcLUsxk1Hgw2yJio0OXsxv7pyIPmvECY7bMbluA==",
         "dependencies": {}
       },
       "markdown-it@13.0.2": {

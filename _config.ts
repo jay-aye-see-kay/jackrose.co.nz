@@ -1,15 +1,14 @@
 import lume from "lume/mod.ts";
 import codeHighlight from "lume/plugins/code_highlight.ts";
 import postcss from "lume/plugins/postcss.ts";
-import remark from "lume/plugins/remark.ts";
+import markdownTaskLists from "npm:markdown-it-task-lists";
 
-const site = lume({
-  src: "./src",
-});
+const site = lume({ src: "./src" });
+
+site.hooks.addMarkdownItPlugin(markdownTaskLists);
 
 site.use(codeHighlight());
 site.use(postcss());
-site.use(remark());
 
 site.remoteFile(
   "github.min.css",
