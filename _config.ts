@@ -1,13 +1,15 @@
 import lume from "lume/mod.ts";
-import postcss from "lume/plugins/postcss.ts";
 import codeHighlight from "lume/plugins/code_highlight.ts";
+import postcss from "lume/plugins/postcss.ts";
+import remark from "lume/plugins/remark.ts";
 
 const site = lume({
   src: "./src",
 });
 
-site.use(postcss());
 site.use(codeHighlight());
+site.use(postcss());
+site.use(remark());
 
 site.remoteFile(
   "github.min.css",
