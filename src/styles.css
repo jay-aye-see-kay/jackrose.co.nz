@@ -1,5 +1,21 @@
+@import "./github.min.css";
+
 body {
   max-width: 600px;
   margin: 40px auto;
   padding: 0 20px;
+}
+
+/* inline code (the only styling they get) */
+p code {
+  background-color: #ddd;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* code blocks (also gets styling from highlightjs plugin) */
+pre code.hljs {
+  background-color: #eee;
+  border-radius: 4px;
+  border: 1px solid black;
 }

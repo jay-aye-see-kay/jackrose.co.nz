@@ -13,6 +13,7 @@ If you're wondering why the styling is so basic and there's no navbar, it's beca
 - TILs:
   - [what are TILs?](/til)
   - [moving direnv's cache](/til/customizing-direnv-cache-location)
+  - [parallelism in shell scripts](/til/parallelism-in-shell-scripts/)
 
 ## Contact me
 
