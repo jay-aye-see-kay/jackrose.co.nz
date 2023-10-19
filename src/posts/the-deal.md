@@ -14,9 +14,11 @@ In approximate order, the features want to add are:
 - [ ] link posts to their source on github to view their history
 - [ ] a post tagging system and a tags page
 - [ ] [site search](https://lume.land/plugins/pagefind/)
-- [ ] deploy to AWS (s3 and cloudfront) instead of Vercel
+- [ ] deploy to AWS or Cloudflare instead of Vercel
 - [ ] comments based on github issues
 
 ## Updates
 
-2023-10-18: [TIL: parallelism in shell scripts](/til/parallelism-in-shell-scripts/), and added code highlighting
+2023-10-18: [TIL: parallelism in shell scripts](/til/parallelism-in-shell-scripts/) -> and added code highlighting
+
+2023-10-19: [TIL: detecting if running in playwright](/til/detecting-if-an-application-is-being-run-in-playwright/) -> TIL list a reusable component and convert homepage to nunjunk syntax

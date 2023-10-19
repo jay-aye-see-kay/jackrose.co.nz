@@ -1,9 +1,20 @@
 ---
 title: Jack's website
 url: /
+contacts:
+  - source: GitHub
+    label: /jay-aye-see-kay
+    url: https://github.com/jay-aye-see-kay
+  - source: Stackoverflow
+    label: /jay-aye-see-kay
+    url: https://stackoverflow.com/users/7164888/jay-aye-see-kay
+  - source: LinkedIn
+    label: /jackderryrose
+    url: https://linkedin.com/in/jackderryrose
 ---
 
 <h1>{{ title }}</h1>
+
 <h2>About</h2>
 <p>Like most software developers I want to write more than I do, and I've spent 10x more time [re]writing software for
   my own website/blog than writing prose for it. So this time around I'm making a deal with myself; each time I write
@@ -11,6 +22,7 @@ url: /
   in this deal.</p>
 <p>If you're wondering why the styling is so basic and there's no navbar, it's because I haven't written enough to
   jusitfy those features yet. Coming soon!</p>
+
 <h2>Links around the site</h2>
 <ul>
   <li>Posts:
@@ -22,9 +34,12 @@ url: /
     {{ comp.til_list() | safe }}
   </li>
 </ul>
+
 <h2>Contact me</h2>
 <ul>
-  <li>GitHub: <a href="https://github.com/jay-aye-see-kay">/jay-aye-see-kay</a></li>
-  <li>Stackoverflow: <a href="https://stackoverflow.com/users/7164888/jay-aye-see-kay">/jay-aye-see-kay</a></li>
-  <li>LinkedIn: <a href="https://linkedin.com/in/jackderryrose">/jackderryrose</a></li>
+  {% for c in contacts %}
+    <li>
+      {{ c.source }}: <a href="{{ c.url }}">{{ c.label }}</a>
+    </li>
+  {% endfor %}
 </ul>
