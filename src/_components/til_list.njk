@@ -3,7 +3,9 @@
     <li>
       <div style="display: flex;justify-content: space-between;">
         <a href="{{ page.data.url }}">{{ page.src.slug }}</a>
-        <em style="color: #777">[{{ page.data.date | date('HUMAN_DATE') }}]<em>
+        <em style="color: #777; flex-shrink: 0; text-align: right;">
+          [{{ page.data.date | date('HUMAN_DATE') }}]
+        </em>
       </div>
     </li>
   {% endfor %}
