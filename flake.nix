@@ -11,6 +11,11 @@
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.deno
+            pkgs.quartoMinimal
+            (pkgs.python3.withPackages (p: [
+              p.matplotlib
+              p.jupyter
+            ]))
           ];
         };
       });

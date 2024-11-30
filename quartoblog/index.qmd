@@ -1,0 +1,20 @@
+---
+title: ""
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+title-block-banner: true
+---
+
+# Stuff about me?
+
+What would go here, leaving it blank feels like something's missing.
+
+Lorum ipsum dolor sit dolor sit amet lorum ipsum sit amet lorum ipsum dolor sit amet lorum ipsum dolor sit amet lorum ipsum dolor sit amet lorum ipsum dolor sit amet.
+Lorum ipsum dolor sit dolor sit amet lorum ipsum sit amet lorum ipsum dolor sit amet lorum ipsum dolor sit amet lorum ipsum dolor sit amet lorum ipsum dolor sit amet.
+
+# Posts...
