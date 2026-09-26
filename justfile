@@ -1,6 +1,6 @@
-# Build the Lume site into _site/
+# Build the site into _site/
 build:
-    deno task build
+    ./build.sh
 
 # Build then deploy _site/ to Cloudflare Pages
 deploy: build
@@ -8,4 +8,4 @@ deploy: build
 
 # Serve the site locally with live reload
 serve:
-    deno task serve
+    python3 -m http.server 8000 --directory _site
