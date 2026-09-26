@@ -10,7 +10,6 @@
       {
         devShells.default = pkgs.mkShell {
           packages = [
-            pkgs.deno
             pkgs.just
           ];
         };
