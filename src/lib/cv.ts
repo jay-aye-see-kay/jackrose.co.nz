@@ -55,6 +55,8 @@ export interface Job {
 
 export interface Role {
   title: string;
+  /** "Staff SRE - Developer Experience" -> team "Developer Experience". */
+  team?: string;
   period?: Period;
   /** Inline text after the bold title, as HTML (compact roles). */
   summary?: string;
@@ -113,6 +115,11 @@ export function parsePeriod(text: string): Period | undefined {
   const e = end === "present" ? NOW : end;
   const months = (e.year - start.year) * 12 + (e.month - start.month) + 1;
   return { label: text.trim(), start, end, months };
+}
+
+/** "Jul 2022 – Present" (en dash, for display). */
+export function formatPeriod(p: Period): string {
+  return p.label.replace(/\s+-\s+/, " – ");
 }
 
 /** "4 yrs 2 mos", "11 mos", "2 yrs" */
@@ -212,9 +219,10 @@ function asRole(p: Paragraph): Role | undefined {
   const label = toString(first).trim();
   const m = label.match(/^(.+?)\s*\((.+)\)$/);
   const period = m ? parsePeriod(m[2]) : undefined;
-  const title = period && m ? m[1] : label;
+  const full = period && m ? m[1] : label;
+  const [title, team] = full.split(/\s+-\s+/, 2);
   const summary = inline(rest).trim();
-  return { title, period, summary: summary || undefined, bullets: [] };
+  return { title, team, period, summary: summary || undefined, bullets: [] };
 }
 
 function parseJob(heading: Heading, body: RootContent[]): Job {

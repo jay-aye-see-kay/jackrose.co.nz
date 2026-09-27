@@ -1,310 +1,463 @@
 /* ============================================================
-   JACKROSE.CO.NZ — Clean Federal Modernist / NASA Worm
-   Palette: paper, ink, one warm red. System fonts.
+   jackrose.co.nz — clean federal modernism
+   Paper, ink, one red. Swiss grid, mono labels, heavy rules.
+   After the NASA Graphics Standards Manual (1975).
    ============================================================ */
 
 :root {
   --paper: #f2efe9;
   --ink: #1a1a1a;
-  --ink-soft: #6b6b6b;
+  --ink-soft: #5f5c57;
   --red: #d22630;
   --rule: #c9c4ba;
-  --rule-heavy: #1a1a1a;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  --sans: -apple-system, "Helvetica Neue", Inter, Arial, sans-serif;
-  --maxw: 44rem;
+  --sans: "Helvetica Neue", Helvetica, -apple-system, Inter, Arial, sans-serif;
+  --maxw: 48rem;
+  --gutter: 1.5rem;
+  --when: 9.5rem; /* the CV's date column */
 }
 
-* { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html { background: var(--paper); }
+html {
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
-  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
 .page {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+  padding: 3rem var(--gutter) 3rem;
 }
 
 a {
-  color: var(--ink);
+  color: inherit;
   text-decoration-color: var(--red);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
 }
-a:hover { color: var(--red); }
-
-/* ---------- masthead ---------- */
-
-.masthead-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+a:hover {
+  color: var(--red);
 }
 
-.masthead-row-end { justify-content: flex-end; }
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
 
-.micro {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
+::selection {
+  background: var(--red);
+  color: var(--paper);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* mono micro-label: the workhorse of the style */
+.micro,
+.tagline,
+.site-nav a,
+.section-title,
+.job-when,
+.role-dates,
+.contact-item dt,
+.colophon {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------- masthead */
+
+.masthead {
+  margin-bottom: 2.5rem;
 }
 
 .identity {
-  font-size: clamp(3rem, 12vw, 4.75rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-  margin: 0.35rem 0 0;
+  display: block;
+  width: fit-content;
+  font-size: clamp(3rem, 13vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
   text-transform: uppercase;
+  text-decoration: none;
+}
+.identity:hover {
+  color: inherit;
 }
 
-.identity-thin {
-  color: var(--red);
-  font-weight: 400;
-  padding: 0 0.06em;
-}
-
-.subtitle {
-  margin: 0.5rem 0 0;
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+.tagline {
+  margin: 0.9rem 0 0;
   color: var(--ink-soft);
 }
-
-/* ---------- nav ---------- */
+.tagline span {
+  color: var(--red);
+  padding: 0 0.3em;
+}
 
 .site-nav {
-  margin-top: 1.1rem;
-  padding: 0.5rem 0;
-  border-top: 2px solid var(--rule-heavy);
-  border-bottom: 1px solid var(--rule);
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: 0.55rem 0;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
 
 .site-nav a {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
   text-decoration: none;
-}
-
-.site-nav a:hover { color: var(--red); }
-
-.nav-here {
-  color: var(--red);
-  border-bottom: 2px solid var(--red);
   padding-bottom: 2px;
 }
-
-.nav-sep { color: var(--rule); font-size: 0.6875rem; }
-
-/* ---------- panels ---------- */
-
-.panel {
-  position: relative;
-  border: 1px solid var(--rule);
-  padding: 1.1rem 1.25rem 1.3rem;
-  margin-top: 1.5rem;
+.site-nav a[aria-current="page"] {
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
 }
 
-.callout-label {
-  position: absolute;
-  top: -0.55rem;
-  right: 0.9rem;
-  background: var(--paper);
-  padding: 0 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.5625rem;
-  line-height: 1.4;
-  letter-spacing: 0.1em;
-  color: var(--ink-soft);
-  text-align: left;
-}
+/* ---------------------------------------------------------- sections */
 
 .section-title {
-  margin: 0 0 0.6rem;
-  font-size: 0.8125rem;
+  margin: 0 0 1.25rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  color: var(--ink);
 }
-
 .section-title::after {
   content: "";
   display: block;
-  width: 2.2rem;
+  width: 2.25rem;
   height: 4px;
+  margin-top: 0.4rem;
   background: var(--red);
-  margin-top: 0.45rem;
 }
 
-.panel p { margin: 0.55rem 0; }
+.prose p {
+  margin: 0 0 1em;
+  max-width: 36em;
+}
 
-/* ---------- about page: work list ---------- */
-
-.work-list { margin: 0.5rem 0 0; }
-
-.work-item { padding: 0.6rem 0; }
-
-.work-item + .work-item { border-top: 1px solid var(--rule); }
-
-.work-item dt {
+/* a bordered panel with a label sitting on its top edge */
+.panel {
+  position: relative;
+  border: 1px solid var(--ink);
+  padding: 1.25rem 1.25rem 1rem;
+}
+.panel > .panel-label {
+  position: absolute;
+  top: -0.6em;
+  left: 0.9rem;
+  margin: 0;
+  padding: 0 0.4rem;
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
   font-weight: 700;
-  font-size: 0.9375rem;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
-.work-item dt::before {
-  content: "■ ";
-  color: var(--red);
-  font-size: 0.625rem;
-  vertical-align: 2px;
-}
-
-.work-item dd {
-  margin: 0.15rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.9375rem;
-}
-
-/* ---------- contact list ---------- */
+/* ---------------------------------------------------------- contact list */
 
 .contact-list {
-  list-style: none;
-  margin: 0.5rem 0 0;
-  padding: 0;
+  margin: 0;
 }
 
-.contact-list li {
-  font-family: var(--mono);
-  font-size: 0.875rem;
-  padding: 0.35rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-.contact-list li:first-child { border-top: 1px solid var(--rule); }
-
-.cv-contact-nolink { color: var(--ink-soft); }
-
-/* ---------- CV page ---------- */
-
-.cv-role { margin: 1.2rem 0 0; }
-.cv-role + .cv-role {
-  border-top: 1px dashed var(--rule);
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
-
-.cv-role-head {
-  display: flex;
-  justify-content: space-between;
+.contact-item {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
   align-items: baseline;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  border-top: 1px solid var(--rule);
+}
+.contact-item:first-child {
+  border-top: 0;
 }
 
-.cv-role-head h3 { margin: 0; font-size: 1rem; }
-
-.cv-when {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  color: var(--red);
-  white-space: nowrap;
-}
-
-.cv-team {
-  font-size: 0.875rem;
+.contact-item dt {
   color: var(--ink-soft);
-  margin: 0.15rem 0 0.5rem;
 }
 
-.cv-bullets {
-  margin: 0.35rem 0 0;
+.contact-item dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+/* ---------------------------------------------------------- home */
+
+.home-about {
+  margin-bottom: 3rem;
+}
+
+.home-about .prose p:first-child {
+  max-width: 32em;
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.home-contact .contact-list {
+  max-width: 28rem;
+}
+
+.cta {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------- CV */
+
+.cv-head {
+  display: grid;
+  grid-template-columns: 1fr 17rem;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.cv-summary p {
+  margin: 0 0 0.75em;
+}
+.cv-summary p:first-child {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.cv-contact .contact-item {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.cv-contact .contact-item dt {
+  font-size: 0.625rem;
+}
+.cv-contact .contact-item dd {
+  font-size: 0.875rem;
+}
+
+.cv-section {
+  margin-bottom: 2.5rem;
+}
+
+.section-body ul {
+  margin: 0;
   padding-left: 1.1rem;
 }
 
-.cv-bullets li {
-  font-size: 0.9375rem;
-  margin-bottom: 0.3rem;
+ul {
+  list-style-type: square;
+}
+li::marker {
+  color: var(--red);
 }
 
-.cv-bullets li::marker { color: var(--red); }
-
-/* stats grid */
-
-.stats-grid {
+/* one job = one row of the grid: dates on the left, detail on the right */
+.job {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin-top: 0.7rem;
+  grid-template-columns: var(--when) 1fr;
+  gap: 0 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
 }
 
-.stat {
-  background: var(--paper);
-  padding: 0.8rem 0.9rem;
+.job-when {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-}
-
-.stat-number {
-  font-family: var(--sans);
-  font-size: 1.75rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--red);
-  line-height: 1;
-}
-
-.stat-label {
-  font-family: var(--mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.1em;
+  gap: 0.15rem;
+  padding-top: 0.25rem;
   color: var(--ink-soft);
 }
 
-/* ---------- footer ---------- */
-
-.colophon { margin-top: 2.5rem; }
-
-.rule-heavy {
-  border-top: 2px solid var(--rule-heavy);
-  margin-bottom: 0.5rem;
+.job-duration {
+  color: var(--red);
 }
 
-/* ---------- print (CV) ---------- */
+.job-head {
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+}
 
-@media print {
+.job-company {
+  font-weight: 700;
+}
+
+.job-note {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.job-note::before {
+  content: " · ";
+}
+
+.job-title {
+  display: block;
+  font-weight: 400;
+}
+
+.job-body p,
+.role-summary {
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.job-body ul,
+.role-bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
+}
+.job-body li,
+.role-bullets li {
+  margin-bottom: 0.3rem;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+}
+
+/* ---- roles: a red spine groups roles held at one company ---- */
+
+.roles {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  border-left: 3px solid var(--red);
+}
+
+.role {
+  position: relative;
+  padding: 0 0 1rem 1.25rem;
+}
+.role:last-child {
+  padding-bottom: 0;
+}
+/* a tick on the spine for each role */
+.role::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 0.65em;
+  width: 0.75rem;
+  height: 3px;
+  background: var(--red);
+}
+
+.role-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.role-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.role-team {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.role-team::before {
+  content: " / ";
+  color: var(--red);
+}
+
+.role-dates {
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* roomy: a long, recent tenure gets space */
+.job-roomy .job-head {
+  font-size: 1.375rem;
+}
+
+/* compact: several roles, one line each */
+.job-compact .role {
+  padding-bottom: 0.4rem;
+}
+.job-compact .role-head {
+  margin-bottom: 0;
+}
+.job-compact .role-title {
+  font-size: 0.9375rem;
+}
+.job-compact .role-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.cv-source {
+  margin-top: 3rem;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------- footer */
+
+.colophon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 4rem;
+  padding-top: 0.55rem;
+  border-top: 3px solid var(--ink);
+  color: var(--ink-soft);
+}
+.colophon > :first-child {
+  margin-right: auto;
+}
+.colophon a {
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------- small screens */
+
+@media (max-width: 40rem) {
   :root {
-    --paper: #ffffff;
-    --rule: #bbbbbb;
+    --gutter: 1.1rem;
   }
-  .page { max-width: 100%; padding: 0; }
-  .site-nav, .identity { font-size: 2.5rem; }
-  .site-nav { display: none; }
-  .panel { border: 1px solid #999; padding: 0.8rem 1rem 1rem; margin-top: 1rem; break-inside: avoid; }
-  .callout-label { background: var(--paper); }
-  a { color: var(--ink); text-decoration: none; }
-}
-
-@media (max-width: 480px) {
-  .page { padding: 1.5rem 1rem 3rem; }
-  .cv-when { white-space: normal; }
+  .page {
+    padding-top: 2rem;
+  }
+  .cv-head {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .job {
+    grid-template-columns: 1fr;
+  }
+  .job-when {
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0 0 0.35rem;
+  }
 }

@@ -20,11 +20,11 @@ const rest = cv.sections.filter((s) => !special.has(s.slug));
   <div class="cv">
     <header class="cv-head">
       <div class="cv-intro">
-        <h1 class="cv-name">{cv.name}</h1>
+        <h1 class="visually-hidden">{cv.name}: curriculum vitae</h1>
         {summary && <div class="cv-summary" set:html={summary.html} />}
       </div>
-      <aside class="cv-contact" aria-label="Contact">
-        <h2>Contact</h2>
+      <aside class="cv-contact panel" aria-labelledby="contact-label">
+        <h2 class="panel-label" id="contact-label">Contact</h2>
         <Contact items={contact} />
       </aside>
     </header>

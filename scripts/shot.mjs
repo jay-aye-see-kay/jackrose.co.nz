@@ -4,14 +4,15 @@
 //   (normally `just shot /cv`)
 //
 // Expects `just dev` (or `just preview`) running; BASE overrides the URL.
-// Writes a full-page PNG (or PDF with --print) to /tmp and prints the path.
+// Writes a full-page PNG (or PDF with --print) to .shots/ (gitignored;
+// /tmp inside the sandbox is not the /tmp other tools see) and prints the path.
 //
 // The browser flags aren't optional: the sandbox denies mach-register, so
 // Chromium can't spawn renderer processes. --single-process avoids that, and
 // then --disable-features=Compositing avoids a software-compositor hang.
 // (Worked out in ../bookslikeyou, doc-5.)
 
-import { glob } from "node:fs/promises";
+import { glob, mkdir } from "node:fs/promises";
 import { chromium } from "playwright-core";
 
 const BASE = process.env.BASE ?? "http://localhost:4321";
@@ -33,6 +34,7 @@ async function findShell() {
   process.exit(1);
 }
 
+await mkdir(".shots", { recursive: true });
 const browser = await chromium.launch({
   headless: true,
   executablePath: await findShell(),
@@ -52,11 +54,11 @@ try {
   const slug = path.replace(/^\/+|\/+$/g, "").replace(/[^a-zA-Z0-9._-]+/g, "-") || "root";
   const suffix = mobile ? "-mobile" : "";
   if (flags.has("--print")) {
-    const out = `/tmp/shot-${slug}.pdf`;
+    const out = `.shots/shot-${slug}.pdf`;
     await page.pdf({ path: out, format: "A4", printBackground: true });
     console.log(out);
   } else {
-    const out = `/tmp/shot-${slug}${suffix}.png`;
+    const out = `.shots/shot-${slug}${suffix}.png`;
     await page.screenshot({ path: out, fullPage: !flags.has("--viewport") });
     console.log(out);
   }
