@@ -1,5 +1,5 @@
 /* ============================================================
-   jackrose.co.nz — clean federal modernism
+   jackrose.co.nz - clean federal modernism
    Paper, ink, one red. Swiss grid, mono labels, heavy rules.
    After the NASA Graphics Standards Manual (1975).
    ============================================================ */
@@ -465,7 +465,7 @@ code {
   display: inline;
 }
 .job-early .job-title::before {
-  content: " — ";
+  content: " - ";
 }
 .job-early .job-body ul {
   font-size: 0.875rem;

@@ -1,4 +1,4 @@
-// https://llmstxt.org — a plain map of the site for language models.
+// https://llmstxt.org - a plain map of the site for language models.
 import type { APIRoute } from "astro";
 import { cv, contact } from "../lib/cv";
 import { site as me } from "../site";
@@ -12,7 +12,7 @@ const email = contact.find((c) => c.href?.startsWith("mailto:"))?.value;
 
 export const GET: APIRoute = ({ site }) => {
   const url = (path: string) => new URL(path, site).href;
-  const body = `# ${cv.name} — ${me.tagline}
+  const body = `# ${cv.name} - ${me.tagline}
 
 > Personal site of ${cv.name}: a short about page, contact details, and a CV.
 

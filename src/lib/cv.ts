@@ -115,9 +115,9 @@ export function parsePeriod(text: string): Period | undefined {
   return { label: text.trim(), start, end };
 }
 
-/** "Jul 2022 – Present" (en dash, for display). */
+/** "Jul 2022 - Present" (plain hyphen, for display). */
 export function formatPeriod(p: Period): string {
-  return p.label.replace(/\s+-\s+/, " – ");
+  return p.label.replace(/\s+-\s+/, " - ");
 }
 
 /** "Jul 2022 - Present - Multiple Roles @ Culture Amp" */
