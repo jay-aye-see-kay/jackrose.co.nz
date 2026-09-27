@@ -544,6 +544,31 @@ code {
   transform: translateX(-100%);
 }
 
+/* early: long-ago, pre-career jobs recede */
+.job-early {
+  padding: 0.6rem 0;
+  color: var(--ink-soft);
+}
+.job-early .job-head {
+  font-size: 0.9375rem;
+  margin-bottom: 0.15rem;
+}
+.job-early .job-company {
+  color: var(--ink);
+}
+.job-early .job-title {
+  display: inline;
+}
+.job-early .job-title::before {
+  content: " — ";
+}
+.job-early .job-body ul {
+  font-size: 0.875rem;
+}
+.job-early .job-duration {
+  color: inherit;
+}
+
 .cv-source {
   margin-top: 3rem;
   font-size: 0.875rem;

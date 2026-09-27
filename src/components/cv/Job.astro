@@ -14,9 +14,19 @@ const { job } = Astro.props;
 const roomy = job.roles.some((r) => r.bullets.length > 0);
 const kind = job.roles.length === 0 ? "plain" : roomy ? "roomy" : "compact";
 const multiRole = job.roles.length > 1;
+
+// Single-role jobs that ended 10+ years ago recede (smaller, muted type).
+const EARLY_YEARS = 10;
+const now = new Date();
+const end = job.period?.end;
+const early =
+  kind === "plain" &&
+  end !== undefined &&
+  end !== "present" &&
+  now.getFullYear() * 12 + now.getMonth() - (end.year * 12 + end.month - 1) >= EARLY_YEARS * 12;
 ---
 
-<article class:list={["job", `job-${kind}`, { "job-multi": multiRole }]}>
+<article class:list={["job", `job-${kind}`, { "job-multi": multiRole, "job-early": early }]}>
   <div class="job-when">
     {
       job.period && (
