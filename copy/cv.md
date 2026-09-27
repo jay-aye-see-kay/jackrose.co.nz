@@ -9,7 +9,7 @@
 
 ## Summary
 
-Staff SRE and DevEx tech lead. 9 years in software, previously mechanical engineering. Building tools and platforms engineers love.
+Staff SRE and Developer Experience Tech Lead. 9 years in software, previously mechanical engineering. Building tools and platforms engineers love.
 
 Strongest with Go and TypeScript, capable with many more.
 
