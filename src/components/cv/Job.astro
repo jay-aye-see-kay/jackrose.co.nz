@@ -3,7 +3,7 @@ import { formatPeriod, type Job } from "../../lib/cv";
 
 interface Props {
   job: Job;
-  /** Let long-ago single-role jobs recede (see below). Off for Education. */
+  /** Let long-ago jobs recede (see below). Off for Education. */
   recede?: boolean;
 }
 
@@ -17,16 +17,16 @@ const roomy = job.roles.some((r) => r.bullets.length > 0);
 const kind = job.roles.length === 0 ? "plain" : roomy ? "roomy" : "compact";
 const multiRole = job.roles.length > 1;
 
-// Single-role jobs that ended 10+ years ago recede (smaller, muted type).
-const EARLY_YEARS = 10;
-const now = new Date();
+// Jobs ending in EARLY_YEAR or before recede (smaller, muted type):
+// both plain one-liners (Cook, General Hand) and compact multi-role
+// jobs (Fletcher). Education opts out via the recede prop.
+const EARLY_YEAR = 2016;
 const end = job.period?.end;
 const early =
   recede &&
-  kind === "plain" &&
   end !== undefined &&
   end !== "present" &&
-  now.getFullYear() * 12 + now.getMonth() - (end.year * 12 + end.month - 1) >= EARLY_YEARS * 12;
+  end.year <= EARLY_YEAR;
 ---
 
 <article class:list={["job", `job-${kind}`, { "job-multi": multiRole, "job-early": early }]}>
