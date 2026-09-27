@@ -1,7 +1,8 @@
 # jackrose.co.nz
 
 Personal site: about + contact on `/`, a CV on `/cv`. Astro, static output,
-deployed to Cloudflare Pages (`just deploy`, not automatic).
+deployed to Cloudflare Pages from GitHub Actions on push to main
+(`.github/workflows/deploy.yml`); `just deploy` remains as a manual fallback.
 
 ## Layout
 

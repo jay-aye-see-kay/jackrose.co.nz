@@ -24,7 +24,8 @@ check:
 preview: build
     npx astro preview
 
-# Build then deploy dist/ to Cloudflare Pages
+# Build then deploy dist/ to Cloudflare Pages (manual fallback; CI on push to
+# main does this automatically)
 deploy: build
     wrangler pages deploy
 
