@@ -20,8 +20,8 @@ ${summaryText}
 
 ## CV
 
-- [CV (Markdown, canonical)](${url("/cv.md")}): the source of truth; the web view is generated from it
-- [CV (web view)](${url("/cv")}): the same content as HTML
+- [CV (HTML)](${url("/cv")})
+- [CV (Markdown)](${url("/cv.md")})
 
 ## About
 
