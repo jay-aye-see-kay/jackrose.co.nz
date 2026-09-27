@@ -54,9 +54,16 @@ try {
   const slug = path.replace(/^\/+|\/+$/g, "").replace(/[^a-zA-Z0-9._-]+/g, "-") || "root";
   const suffix = mobile ? "-mobile" : "";
   if (flags.has("--print")) {
+    // A PDF as the browser would print it, plus a PNG of print media at
+    // A4 width so it can be eyeballed. Prints the PDF's page count too.
     const out = `.shots/shot-${slug}.pdf`;
-    await page.pdf({ path: out, format: "A4", printBackground: true });
-    console.log(out);
+    const pdf = await page.pdf({ path: out, format: "A4", preferCSSPageSize: true });
+    const pages = (pdf.toString("latin1").match(/\/Type\s*\/Page[^s]/g) ?? []).length;
+    await page.emulateMedia({ media: "print" });
+    await page.setViewportSize({ width: 794, height: 1123 });
+    const png = `.shots/shot-${slug}-print.png`;
+    await page.screenshot({ path: png, fullPage: true });
+    console.log(`${out} (${pages} pages)\n${png}`);
   } else {
     const out = `.shots/shot-${slug}${suffix}.png`;
     await page.screenshot({ path: out, fullPage: !flags.has("--viewport") });
