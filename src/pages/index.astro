@@ -1,7 +1,28 @@
 ---
 import Base from "../layouts/Base.astro";
+import Contact from "../components/cv/Contact.astro";
+import { Content as About } from "../../copy/about.md";
+import { contact } from "../lib/cv";
+import { site } from "../site";
+
+// The site links back to itself; not much use on the site.
+const channels = contact.filter((c) => c.label.toLowerCase() !== "site");
 ---
 
-<Base title="Jack Rose" description="Jack Rose, Staff SRE and developer experience tech lead.">
-  <p>Coming soon.</p>
+<Base
+  title={`${site.name} — ${site.tagline}`}
+  description={`${site.name} is a Staff SRE and developer experience tech lead in ${site.location}.`}
+>
+  <section class="home-about" id="about">
+    <h2 class="section-title">About</h2>
+    <div class="prose">
+      <About />
+    </div>
+    <p><a href="/cv">Read the CV</a></p>
+  </section>
+
+  <section class="home-contact" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <Contact items={channels} />
+  </section>
 </Base>
