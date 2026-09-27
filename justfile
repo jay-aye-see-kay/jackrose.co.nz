@@ -1,11 +1,29 @@
-# Build the site into _site/
-build:
-    ./build.sh
+export ASTRO_TELEMETRY_DISABLED := "1"
 
-# Build then deploy _site/ to Cloudflare Pages
+# List recipes
+default:
+    @just --list
+
+# Install node dependencies
+install:
+    npm install
+
+# Dev server with live reload on http://localhost:4321
+dev:
+    npx astro dev
+
+# Build the site into dist/
+build:
+    npx astro build
+
+# Type-check .astro and .ts files
+check:
+    npx astro check
+
+# Serve the built dist/ locally (what Cloudflare will serve, minus _headers)
+preview: build
+    npx astro preview
+
+# Build then deploy dist/ to Cloudflare Pages
 deploy: build
     wrangler pages deploy
-
-# Serve the site locally with live reload
-serve:
-    python3 -m http.server 8000 --directory _site
