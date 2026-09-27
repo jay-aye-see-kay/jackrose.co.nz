@@ -1,6 +1,6 @@
 // Screenshot a page of the local site, from inside the agent sandbox.
 //
-//   node scripts/shot.mjs [--mobile] [--print] [--viewport] /some/path
+//   node scripts/shot.mjs [--mobile] [--print] [--viewport] [--el=SELECTOR] /some/path
 //   (normally `just shot /cv`)
 //
 // Expects `just dev` (or `just preview`) running; BASE overrides the URL.
@@ -19,6 +19,7 @@ const BASE = process.env.BASE ?? "http://localhost:4321";
 
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a) => a.startsWith("--")));
+const el = args.find((a) => a.startsWith("--el="))?.slice(5);
 const path = args.find((a) => !a.startsWith("--")) ?? "/";
 if (!path.startsWith("/")) {
   console.error("usage: just shot [--mobile] [--print] [--viewport] /path");
@@ -45,25 +46,33 @@ try {
   const mobile = flags.has("--mobile");
   const ctx = await browser.newContext({
     viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 900 },
-    deviceScaleFactor: mobile ? 2 : 1,
+    deviceScaleFactor: mobile || el ? 2 : 1,
   });
   const page = await ctx.newPage();
   await page.goto(BASE + path, { waitUntil: "networkidle" });
   await page.waitForTimeout(200);
 
   const slug = path.replace(/^\/+|\/+$/g, "").replace(/[^a-zA-Z0-9._-]+/g, "-") || "root";
-  const suffix = mobile ? "-mobile" : "";
+  // Unique names: the agent's file-read tool caches by path and lags behind
+  // sandbox writes, so reusing a name can show a stale image.
+  const stamp = new Date().toTimeString().slice(0, 8).replaceAll(":", "");
+  const suffix = (mobile ? "-mobile" : "") + "-" + stamp;
   if (flags.has("--print")) {
     // A PDF as the browser would print it, plus a PNG of print media at
     // A4 width so it can be eyeballed. Prints the PDF's page count too.
-    const out = `.shots/shot-${slug}.pdf`;
+    const out = `.shots/shot-${slug}-${stamp}.pdf`;
     const pdf = await page.pdf({ path: out, format: "A4", preferCSSPageSize: true });
     const pages = (pdf.toString("latin1").match(/\/Type\s*\/Page[^s]/g) ?? []).length;
     await page.emulateMedia({ media: "print" });
     await page.setViewportSize({ width: 794, height: 1123 });
-    const png = `.shots/shot-${slug}-print.png`;
+    const png = `.shots/shot-${slug}-print-${stamp}.png`;
     await page.screenshot({ path: png, fullPage: true });
     console.log(`${out} (${pages} pages)\n${png}`);
+  } else if (el) {
+    // one element, at 2x, for checking details
+    const out = `.shots/shot-${slug}-el${suffix}.png`;
+    await page.locator(el).first().screenshot({ path: out, scale: "device" });
+    console.log(out);
   } else {
     const out = `.shots/shot-${slug}${suffix}.png`;
     await page.screenshot({ path: out, fullPage: !flags.has("--viewport") });

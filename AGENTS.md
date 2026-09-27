@@ -63,12 +63,13 @@ just shot /cv                 # full page, 1280 wide
 just shot --mobile /cv        # 390 wide, 2x
 just shot --viewport /        # above the fold only
 just shot --print /cv         # PDF + print-media PNG, reports page count
+just shot --el=.timeline /cv  # one element at 2x
 ```
 
 Output goes to `.shots/`, not `/tmp`: the sandbox's `/tmp` isn't the one
-other tools read from. The file-read tool can also lag behind sandbox
-writes (ENOENT, or a stale image at the same path): copy the shot to a fresh
-name and retry once.
+other tools read from. The file-read tool also caches by path and can lag
+behind sandbox writes, so shots get a timestamp in their name; if a read
+says ENOENT, wait ~10s and retry. `rm -rf .shots` whenever.
 
 Also sandbox-related: Astro telemetry is disabled (`ASTRO_TELEMETRY_DISABLED`
 in the justfile and `.envrc`) because it can't write its config, and

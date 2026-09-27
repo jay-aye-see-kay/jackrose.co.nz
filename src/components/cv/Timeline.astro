@@ -1,0 +1,101 @@
+---
+// A to-scale strip of the whole career. Long tenures (3+ years at one
+// company, across stints) are red and labelled; everything else is ink.
+// Purely a visual summary of the jobs below it, so it's hidden from
+// assistive tech (the job list carries the same information).
+import { formatDuration, type Job, type YearMonth } from "../../lib/cv";
+
+interface Props {
+  jobs: Job[];
+}
+
+const LONG_TENURE_MONTHS = 36;
+
+const { jobs } = Astro.props;
+const now = new Date();
+const idx = (ym: YearMonth | "present") =>
+  ym === "present" ? now.getFullYear() * 12 + now.getMonth() : ym.year * 12 + ym.month - 1;
+
+const dated = jobs.filter((j) => j.period);
+const tenure = new Map<string, number>();
+for (const j of dated) {
+  const key = j.company ?? j.title;
+  tenure.set(key, (tenure.get(key) ?? 0) + j.period!.months);
+}
+
+const start = Math.min(...dated.map((j) => idx(j.period!.start)));
+const end = idx("present") + 1;
+const span = end - start;
+const pct = (i: number) => ((i - start) / span) * 100;
+
+const segments = dated.map((j) => {
+  const p = j.period!;
+  const from = pct(idx(p.start));
+  const to = pct(idx(p.end) + 1);
+  const name = j.company ?? j.title;
+  const long = (tenure.get(name) ?? 0) >= LONG_TENURE_MONTHS;
+  // label only the longest stint at a long-tenure company
+  const labelled =
+    long && p.months === Math.max(...dated.filter((d) => (d.company ?? d.title) === name).map((d) => d.period!.months));
+  return {
+    name,
+    title: `${name}: ${j.title}, ${p.label} (${formatDuration(p.months)})`,
+    from,
+    width: to - from,
+    long,
+    gap: !j.company,
+    label: labelled ? name : undefined,
+    duration: formatDuration(p.months),
+    labelRight: from > 50,
+  };
+});
+
+const firstYear = Math.ceil(start / 12);
+const lastYear = Math.floor((end - 1) / 12);
+const ticks = [];
+for (let y = firstYear; y <= lastYear; y++) {
+  const at = pct(y * 12);
+  ticks.push({ year: y, at, major: y % 2 === 0, edge: at < 4 ? "start" : at > 96 ? "end" : undefined });
+}
+---
+
+<figure class="timeline" aria-hidden="true">
+  <div class="timeline-labels">
+    {
+      segments
+        .filter((s) => s.label)
+        .map((s) => (
+          <span
+            class:list={["timeline-label", { "is-right": s.labelRight }]}
+            style={s.labelRight ? `right: ${100 - s.from - s.width}%` : `left: ${s.from}%`}
+          >
+            {s.label}
+            <span class="timeline-duration"> · {s.duration}</span>
+          </span>
+        ))
+    }
+  </div>
+  <div class="timeline-bar">
+    {
+      segments.map((s) => (
+        <span
+          class:list={["timeline-seg", { "is-long": s.long, "is-gap": s.gap }]}
+          style={`left: ${s.from}%; width: ${s.width}%`}
+          title={s.title}
+        />
+      ))
+    }
+  </div>
+  <div class="timeline-axis">
+    {
+      ticks.map((t) => (
+        <span
+          class:list={["timeline-tick", { "is-major": t.major, "is-quad": t.year % 4 === 0, [`is-${t.edge}`]: t.edge }]}
+          style={`left: ${t.at}%`}
+        >
+          {t.major && <span>{t.year}</span>}
+        </span>
+      ))
+    }
+  </div>
+</figure>

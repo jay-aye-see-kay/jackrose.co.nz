@@ -425,6 +425,98 @@ code {
   color: var(--ink-soft);
 }
 
+/* ---- timeline: the whole career, to scale ---- */
+
+.timeline {
+  margin: 0 0 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.timeline-labels {
+  position: relative;
+  height: 1.9em;
+}
+
+.timeline-label {
+  position: absolute;
+  bottom: 0.35rem;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--red);
+  font-weight: 700;
+}
+/* a small leader from label down to the bar */
+.timeline-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 1px;
+  height: 0.35rem;
+  background: var(--red);
+}
+.timeline-label.is-right::after {
+  left: auto;
+  right: 0;
+}
+
+.timeline-bar {
+  position: relative;
+  height: 0.9rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.timeline-seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--ink);
+  /* hairline of paper between adjacent jobs */
+  box-shadow: inset -1px 0 0 var(--paper);
+}
+.timeline-seg.is-long {
+  background: var(--red);
+}
+.timeline-seg.is-gap {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ink-soft) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+.timeline-axis {
+  position: relative;
+  height: 2.2em;
+  color: var(--ink-soft);
+}
+
+.timeline-tick {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 0.25rem;
+  background: var(--ink);
+}
+.timeline-tick.is-major {
+  height: 0.45rem;
+}
+.timeline-tick span {
+  position: absolute;
+  top: 0.55rem;
+  left: 0;
+  transform: translateX(-50%);
+}
+.timeline-tick.is-start span {
+  transform: none;
+}
+.timeline-tick.is-end span {
+  transform: translateX(-100%);
+}
+
 .cv-source {
   margin-top: 3rem;
   font-size: 0.875rem;
@@ -464,6 +556,10 @@ code {
   }
   .job {
     grid-template-columns: 1fr;
+  }
+  .timeline-duration,
+  .timeline-tick:not(.is-quad) span {
+    display: none;
   }
   .job-when {
     flex-direction: row;
@@ -515,6 +611,9 @@ code {
   }
   a {
     text-decoration: none;
+  }
+  .cv-rev {
+    margin: -1rem 0 1rem;
   }
   .cv-head {
     grid-template-columns: 1fr 15rem;

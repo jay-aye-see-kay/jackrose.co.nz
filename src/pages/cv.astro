@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Contact from "../components/cv/Contact.astro";
 import Job from "../components/cv/Job.astro";
+import Timeline from "../components/cv/Timeline.astro";
 import { cv, contact, revised } from "../lib/cv";
 
 // Sections with bespoke layouts; anything else in cv.md renders generically.
@@ -39,6 +40,7 @@ const revLong = revised.toLocaleDateString("en-AU", { month: "long", year: "nume
       rest.map((section) => (
         <section class={`cv-section cv-${section.slug}`} id={section.slug}>
           <h2 class="section-title">{section.title}</h2>
+          {section.slug === "work-experience" && <Timeline jobs={section.jobs} />}
           {section.html && <div class="section-body" set:html={section.html} />}
           {section.jobs.map((job) => (
             <Job job={job} />
