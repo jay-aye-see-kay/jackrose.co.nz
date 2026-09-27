@@ -23,15 +23,15 @@ Strongest with Go and TypeScript, capable with many more.
 
 **Staff SRE - Developer Experience (May 2024 - Present)**
 - Tech Lead since May 2026, when the team grew and split in two
-- Mentoring 3 engineers between graduate and mid-level (2023 to present)
+- Mentoring engineers between graduate and mid-level (2023 to present)
 - Helping teams get their repos AI agent ready, self-service where possible (uplift skills and docs) and hands-on for the rest
 - Helped build an "agent workflows" tool running on Buildkite, and used it to build a custom PR reviewer quickly adopted by all teams
 - Designed and built our internal MCP server in late 2025 providing agents company context such as internal package docs, developer analytics, and engineering standards - 100 weekly active users (70% of engineers) within 3 months
 - Continued leading development of Hotel CLI, including adding a plugin system enabling other teams to contribute; 2 teams have plugins so far
 
 **Senior SRE - Developer Experience (Jun 2023 - May 2024)**
-- Drove the local developer environments initiative end-to-end: user interviews, an engineering standard, and a data-led rollout focusing on high value repos reaching 80% of where work happens - reducing repo onboarding from days to minutes
-- As a team we cut new-joiner time-to-tenth-PR from 90 days to under 30 within a year
+- Drove the local developer environments initiative: user interviews, an engineering standard, and a data led rollout focusing on the high value repos (where 80% of work happens) - reducing repo onboarding from days to minutes
+- As a team we cut new starters' time to 10th PR from 90 days to under 30 within a year
 - Led the development of Hotel, an internal Go CLI tool that automates setup and maintenance of developer laptops, including corporate proxy fixes, and self-service diagnostics (`hotel doctor`)
 
 **Senior SRE - Frontend Foundations (Jul 2022 - Jun 2023)**
