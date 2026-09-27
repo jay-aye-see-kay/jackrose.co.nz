@@ -2,13 +2,15 @@
 import Base from "../layouts/Base.astro";
 import Contact from "../components/cv/Contact.astro";
 import Job from "../components/cv/Job.astro";
-import { cv, contact } from "../lib/cv";
+import { cv, contact, revised } from "../lib/cv";
 
 // Sections with bespoke layouts; anything else in cv.md renders generically.
 const bySlug = Object.fromEntries(cv.sections.map((s) => [s.slug, s]));
 const summary = bySlug["summary"];
 const special = new Set(["contact", "summary"]);
 const rest = cv.sections.filter((s) => !special.has(s.slug));
+const rev = revised.toISOString().slice(0, 7); // "2026-09"
+const revLong = revised.toLocaleDateString("en-AU", { month: "long", year: "numeric" });
 ---
 
 <Base
@@ -18,6 +20,10 @@ const rest = cv.sections.filter((s) => !special.has(s.slug));
   <link slot="head" rel="alternate" type="text/markdown" href="/cv.md" title="CV (Markdown)" />
 
   <div class="cv">
+    <p class="micro cv-rev">
+      <span>Curriculum vitae</span>
+      <time datetime={revised.toISOString()} title={`Last updated ${revLong}`}>Rev. {rev}</time>
+    </p>
     <header class="cv-head">
       <div class="cv-intro">
         <h1 class="visually-hidden">{cv.name}: curriculum vitae</h1>

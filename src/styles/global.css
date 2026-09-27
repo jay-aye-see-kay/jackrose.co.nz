@@ -229,6 +229,16 @@ a:hover {
 
 /* ---------------------------------------------------------- CV */
 
+.cv-rev {
+  display: flex;
+  justify-content: space-between;
+  margin: -1.5rem 0 1.5rem;
+  color: var(--ink-soft);
+}
+.cv-rev time {
+  color: var(--red);
+}
+
 .cv-head {
   display: grid;
   grid-template-columns: 1fr 17rem;

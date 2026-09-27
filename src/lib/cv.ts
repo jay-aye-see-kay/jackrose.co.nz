@@ -24,6 +24,7 @@ import type {
 } from "mdast";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { toString } from "mdast-util-to-string";
+import { execFileSync } from "node:child_process";
 import source from "../../copy/cv.md?raw";
 
 export { source };
@@ -327,3 +328,17 @@ function findSection(tree: Root, slug: string): RootContent[] {
 
 export const cv = parseCV(source);
 export const contact = parseContact(source);
+
+/** When cv.md last changed: its last commit, or now if uncommitted/no git. */
+function lastRevised(): Date {
+  try {
+    const dirty = execFileSync("git", ["status", "--porcelain", "copy/cv.md"]).toString().trim();
+    const iso = execFileSync("git", ["log", "-1", "--format=%cI", "--", "copy/cv.md"]).toString().trim();
+    if (!dirty && iso) return new Date(iso);
+  } catch {
+    // no git (or not a repo): fall through
+  }
+  return new Date();
+}
+
+export const revised = lastRevised();

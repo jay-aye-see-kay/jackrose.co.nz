@@ -66,7 +66,9 @@ just shot --print /cv         # PDF + print-media PNG, reports page count
 ```
 
 Output goes to `.shots/`, not `/tmp`: the sandbox's `/tmp` isn't the one
-other tools read from.
+other tools read from. The file-read tool can also lag behind sandbox
+writes (ENOENT, or a stale image at the same path): copy the shot to a fresh
+name and retry once.
 
 Also sandbox-related: Astro telemetry is disabled (`ASTRO_TELEMETRY_DISABLED`
 in the justfile and `.envrc`) because it can't write its config, and
