@@ -5,7 +5,8 @@
 //
 //   # CV - Name                          -> cv.name
 //   ## Section                           -> a section, keyed by slug(title)
-//   ### Start - End - Title @ Company    -> a job (inside any section)
+//   ### Start - End - Title @ Company    -> a job (inside any section; dates
+//                                           may be bare years: "2008 - 2012")
 //   **Role (Start - End)** + list        -> a role with bullets (roomy layout)
 //   **Role (Start - End)** inline text   -> a role with a one-liner (compact)
 //   anything else                        -> rendered as plain HTML, in order
@@ -94,7 +95,10 @@ export function slugify(text: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function parseYearMonth(text: string): YearMonth | undefined {
+/** "Jul 2022", or a bare year ("2012": Jan as a start, Dec as an end). */
+function parseYearMonth(text: string, isEnd = false): YearMonth | undefined {
+  const y = text.trim().match(/^\d{4}$/);
+  if (y) return { year: Number(y[0]), month: isEnd ? 12 : 1 };
   const m = text.trim().match(/^([A-Za-z]{3})[a-z]* (\d{4})$/);
   if (!m) return undefined;
   const month = MONTHS.indexOf(m[1].toLowerCase()) + 1;
@@ -106,7 +110,7 @@ export function parsePeriod(text: string): Period | undefined {
   const m = text.match(/^(.+?)\s+-\s+(.+)$/);
   if (!m) return undefined;
   const start = parseYearMonth(m[1]);
-  const end = /^present$/i.test(m[2].trim()) ? "present" : parseYearMonth(m[2]);
+  const end = /^present$/i.test(m[2].trim()) ? "present" : parseYearMonth(m[2], true);
   if (!start || !end) return undefined;
   return { label: text.trim(), start, end };
 }
@@ -119,7 +123,7 @@ export function formatPeriod(p: Period): string {
 /** "Jul 2022 - Present - Multiple Roles @ Culture Amp" */
 function parseJobHeading(text: string): Omit<Job, "html" | "roles"> {
   const m = text.match(
-    /^([A-Za-z]{3,} \d{4}\s+-\s+(?:Present|[A-Za-z]{3,} \d{4}))\s+-\s+(.+)$/i,
+    /^((?:[A-Za-z]{3,} )?\d{4}\s+-\s+(?:Present|(?:[A-Za-z]{3,} )?\d{4}))\s+-\s+(.+)$/i,
   );
   if (!m) return { heading: text, title: text };
   const period = parsePeriod(m[1]);

@@ -38,7 +38,8 @@ patterns and the page lays itself out:
   get special placement at the top; any other section renders generically,
   so new sections need no code.
 - `### Mon YYYY - Mon YYYY|Present - Title @ Company (Note)`: a job. Dates
-  go in the left column.
+  go in the left column. Bare years work too (`### 2008 - 2012 - Degree @
+  University`), which is how Education entries are written.
 - `**Role - Team (Mon YYYY - Mon YYYY)**` then a list: a **roomy** role
   (used for recent, detailed jobs).
 - `**Role (Mon YYYY - Mon YYYY)** one line of text`: a **compact** role

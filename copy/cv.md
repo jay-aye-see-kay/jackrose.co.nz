@@ -15,7 +15,7 @@ Strongest with Go and TypeScript, capable with many more.
 
 ## Education
 
-- 2012 - BE (Mechanical), The University of Auckland
+### 2008 - 2012 - B.Eng. (Mechanical Engineering) @ The University of Auckland
 
 ## Work Experience
 

@@ -3,9 +3,11 @@ import { formatPeriod, type Job } from "../../lib/cv";
 
 interface Props {
   job: Job;
+  /** Let long-ago single-role jobs recede (see below). Off for Education. */
+  recede?: boolean;
 }
 
-const { job } = Astro.props;
+const { job, recede = true } = Astro.props;
 
 // Layout falls out of the markdown's shape:
 //   roles with bullet lists -> "roomy" (recent, detailed: Culture Amp)
@@ -20,6 +22,7 @@ const EARLY_YEARS = 10;
 const now = new Date();
 const end = job.period?.end;
 const early =
+  recede &&
   kind === "plain" &&
   end !== undefined &&
   end !== "present" &&

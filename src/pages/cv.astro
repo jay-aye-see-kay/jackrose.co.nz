@@ -41,7 +41,7 @@ const revLong = revised.toLocaleDateString("en-AU", { month: "long", year: "nume
           <h2 class="section-title">{section.title}</h2>
           {section.html && <div class="section-body" set:html={section.html} />}
           {section.jobs.map((job) => (
-            <Job job={job} />
+            <Job job={job} recede={section.slug !== "education"} />
           ))}
         </section>
       ))

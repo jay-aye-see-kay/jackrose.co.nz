@@ -5,3 +5,4 @@ node_modules/
 _site/
 _site-archive/
 .shots/
+.DS_Store
