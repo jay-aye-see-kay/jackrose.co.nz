@@ -94,16 +94,17 @@ a:hover {
 }
 
 .identity {
-  display: block;
-  width: fit-content;
+  margin: 0;
   font-size: clamp(3rem, 13vw, 5.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.9;
   text-transform: uppercase;
+}
+.identity a {
   text-decoration: none;
 }
-.identity:hover {
+.identity a:hover {
   color: inherit;
 }
 

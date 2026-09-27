@@ -12,6 +12,8 @@ const { title, description } = Astro.props;
 const path =
   Astro.url.pathname.replace(/(\/index)?\.html$/, "").replace(/\/$/, "") || "/";
 const canonical = new URL(path, Astro.site);
+// The name is the homepage's h1; other pages have their own.
+const Identity = path === "/" ? "h1" : "p";
 const nav = [
   { href: "/", label: "About" },
   { href: "/cv", label: "CV" },
@@ -41,7 +43,7 @@ const nav = [
   <body>
     <div class="page">
       <header class="masthead">
-        <a class="identity" href="/">{site.name}</a>
+        <Identity class="identity"><a href="/">{site.name}</a></Identity>
         <p class="tagline">{site.tagline} <span aria-hidden="true">/</span> {site.location}</p>
         <nav class="site-nav" aria-label="Site">
           {
