@@ -1,8 +1,8 @@
 # jackrose.co.nz
 
 Personal site: about + contact on `/`, a CV on `/cv`. Astro, static output,
-deployed to Cloudflare Pages from GitHub Actions on push to main
-(`.github/workflows/deploy.yml`); `just deploy` remains as a manual fallback.
+deployed to Cloudflare Pages from Cloudflare Workers Builds (Git integration)
+on push to main; `just deploy` is a manual fallback.
 
 ## Layout
 
@@ -23,10 +23,10 @@ scripts/shot.mjs    Screenshot helper (see below)
 
 ```
 just dev            dev server with live reload, http://localhost:4321
-just build          build to dist/
+just build          astro check + build to dist/
 just check          astro check (types)
 just shot /cv       screenshot the running dev server -> .shots/
-just deploy         build + wrangler pages deploy
+just deploy         manual fallback; push to main auto-deploys via Cloudflare
 ```
 
 ## cv.md conventions

@@ -12,9 +12,9 @@ install:
 dev:
     npx astro dev
 
-# Build the site into dist/
+# Type-checks and builds the site into dist/
 build:
-    npx astro build
+    npx astro check && npx astro build
 
 # Type-check .astro and .ts files
 check:
@@ -24,8 +24,8 @@ check:
 preview: build
     npx astro preview
 
-# Build then deploy dist/ to Cloudflare Pages (manual fallback; CI on push to
-# main does this automatically)
+# Build (incl. astro check) into dist/, then deploy to Cloudflare Pages
+# (also happens automatically via Cloudflare Workers Builds on push to main)
 deploy: build
     wrangler pages deploy
 
