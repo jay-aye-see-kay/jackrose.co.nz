@@ -206,8 +206,35 @@ a:hover {
 
 /* ---------------------------------------------------------- home */
 
+.home {
+  display: grid;
+  grid-template-columns: 1fr 15rem;
+  grid-template-areas:
+    "about spec"
+    "contact .";
+  gap: 3rem 2.5rem;
+  align-items: start;
+}
 .home-about {
-  margin-bottom: 3rem;
+  grid-area: about;
+}
+.home-spec {
+  grid-area: spec;
+  margin-top: 2.6rem;
+}
+.home-contact {
+  grid-area: contact;
+}
+
+.spec-list .contact-item {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.spec-list dt {
+  font-size: 0.625rem;
+}
+.spec-list dd {
+  font-size: 0.875rem;
 }
 
 .home-about .prose p:first-child {
@@ -553,6 +580,18 @@ code {
   .cv-head {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-areas: "about" "spec" "contact";
+    gap: 2.5rem;
+  }
+  .home-spec {
+    margin-top: 0;
+  }
+  .home-about .prose p:first-child,
+  .cv-summary p:first-child {
+    font-size: 1.125rem;
   }
   .job {
     grid-template-columns: 1fr;

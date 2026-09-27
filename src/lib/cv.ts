@@ -342,3 +342,10 @@ function lastRevised(): Date {
 }
 
 export const revised = lastRevised();
+
+/** The job whose period ends "present", if any. */
+export function currentJob(c: CV = cv): Job | undefined {
+  for (const s of c.sections)
+    for (const j of s.jobs) if (j.period?.end === "present") return j;
+  return undefined;
+}

@@ -2,27 +2,53 @@
 import Base from "../layouts/Base.astro";
 import Contact from "../components/cv/Contact.astro";
 import { Content as About } from "../../copy/about.md";
-import { contact } from "../lib/cv";
+import { contact, currentJob, formatDuration } from "../lib/cv";
 import { site } from "../site";
 
 // The site links back to itself; not much use on the site.
 const channels = contact.filter((c) => c.label.toLowerCase() !== "site");
+
+const job = currentJob();
+const role = job?.roles[0];
+const spec = [
+  ...(role ? [{ label: "Role", value: [role.title, role.team].filter(Boolean).join(", ") }] : []),
+  ...(job?.company && job.period
+    ? [{ label: "At", value: `${job.company}, ${formatDuration(job.period.months)}` }]
+    : []),
+  ...site.spec,
+];
 ---
 
 <Base
   title={`${site.name} — ${site.tagline}`}
   description={`${site.name} is a Staff SRE and developer experience tech lead in ${site.location}.`}
 >
-  <section class="home-about" id="about">
-    <h2 class="section-title">About</h2>
-    <div class="prose">
-      <About />
-    </div>
-    <p class="cta"><a href="/cv">Read the CV →</a></p>
-  </section>
+  <div class="home">
+    <section class="home-about" id="about">
+      <h2 class="section-title">About</h2>
+      <div class="prose">
+        <About />
+      </div>
+      <p class="cta"><a href="/cv">Read the CV →</a></p>
+    </section>
 
-  <section class="home-contact" id="contact">
-    <h2 class="section-title">Contact</h2>
-    <Contact items={channels} />
-  </section>
+    <aside class="home-spec panel" aria-labelledby="spec-label">
+      <h2 class="panel-label" id="spec-label">Fig. 1 — Specification</h2>
+      <dl class="contact-list spec-list">
+        {
+          spec.map((row) => (
+            <div class="contact-item">
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </aside>
+
+    <section class="home-contact" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <Contact items={channels} />
+    </section>
+  </div>
 </Base>
