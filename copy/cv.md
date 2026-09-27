@@ -13,6 +13,10 @@ Staff SRE and DevEx tech lead. 9 years in software, previously mechanical engine
 
 Strongest with Go and TypeScript, capable with many more.
 
+## Education
+
+- 2012 - BE (Mechanical), The University of Auckland
+
 ## Work Experience
 
 ### Jul 2022 - Present - Multiple Roles @ Culture Amp
@@ -81,7 +85,3 @@ React/Django agency helping startups scale. Started as a junior, promoted to mid
 ### Dec 2007 - Nov 2008 - General Hand @ Trucks and Trailers (Diesel Workshop)
 
 - Servicing Mercedes and Freightliner trucks, plus some heavier work like clutch replacements and chassis repairs
-
-## Education
-
-- 2012 - BE (Mechanical), The University of Auckland
