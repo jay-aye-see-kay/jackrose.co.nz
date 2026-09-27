@@ -1,0 +1,20 @@
+---
+import type { ContactItem } from "../../lib/cv";
+
+interface Props {
+  items: ContactItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<dl class="contact-list">
+  {
+    items.map((item) => (
+      <div class="contact-item">
+        <dt>{item.label}</dt>
+        <dd>{item.href ? <a href={item.href}>{item.value}</a> : item.value}</dd>
+      </div>
+    ))
+  }
+</dl>

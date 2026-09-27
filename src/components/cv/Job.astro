@@ -1,0 +1,62 @@
+---
+import { formatDuration, type Job } from "../../lib/cv";
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
+const roomy = job.roles.some((r) => r.bullets.length > 0);
+const multiRole = job.roles.length > 1;
+---
+
+<article class:list={["job", { "job-roomy": roomy, "job-compact": job.roles.length && !roomy, "job-multi": multiRole }]}>
+  <header class="job-head">
+    <h3 class="job-title">
+      {
+        job.company ? (
+          <>
+            <span class="job-company">{job.company}</span>
+            {job.companyNote && <span class="job-note">{job.companyNote}</span>}
+            {!multiRole && <span class="job-role">{job.title}</span>}
+          </>
+        ) : (
+          <span class="job-company">{job.title}</span>
+        )
+      }
+    </h3>
+    {
+      job.period && (
+        <p class="job-when">
+          <span class="job-dates">{job.period.label}</span>
+          <span class="job-duration">{formatDuration(job.period.months)}</span>
+        </p>
+      )
+    }
+  </header>
+
+  {job.html && <div class="job-body" set:html={job.html} />}
+
+  {
+    job.roles.length > 0 && (
+      <ol class="roles">
+        {job.roles.map((role) => (
+          <li class="role">
+            <div class="role-head">
+              <h4 class="role-title">{role.title}</h4>
+              {role.period && <span class="role-dates">{role.period.label}</span>}
+            </div>
+            {role.summary && <p class="role-summary" set:html={role.summary} />}
+            {role.bullets.length > 0 && (
+              <ul class="role-bullets">
+                {role.bullets.map((b) => (
+                  <li set:html={b} />
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</article>

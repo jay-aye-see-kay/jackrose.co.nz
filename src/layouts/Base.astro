@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(path, Astro.site);
+const nav = [
+  { href: "/", label: "About" },
+  { href: "/cv", label: "CV" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="masthead">
+        <a class="identity" href="/">Jack Rose</a>
+        <nav class="site-nav" aria-label="Site">
+          {
+            nav.map((item) => (
+              <a href={item.href} aria-current={item.href === path ? "page" : undefined}>
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="colophon">
+        <span>jackrose.co.nz</span>
+      </footer>
+    </div>
+  </body>
+</html>

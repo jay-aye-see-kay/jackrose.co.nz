@@ -1,0 +1,48 @@
+---
+import Base from "../layouts/Base.astro";
+import Contact from "../components/cv/Contact.astro";
+import Job from "../components/cv/Job.astro";
+import { cv, contact } from "../lib/cv";
+
+// Sections with bespoke layouts; anything else in cv.md renders generically.
+const bySlug = Object.fromEntries(cv.sections.map((s) => [s.slug, s]));
+const summary = bySlug["summary"];
+const special = new Set(["contact", "summary"]);
+const rest = cv.sections.filter((s) => !special.has(s.slug));
+---
+
+<Base
+  title={`CV — ${cv.name}`}
+  description={`Curriculum vitae of ${cv.name}: Staff SRE and developer experience tech lead.`}
+>
+  <link slot="head" rel="alternate" type="text/markdown" href="/cv.md" title="CV (Markdown)" />
+
+  <div class="cv">
+    <header class="cv-head">
+      <div class="cv-intro">
+        <h1 class="cv-name">{cv.name}</h1>
+        {summary && <div class="cv-summary" set:html={summary.html} />}
+      </div>
+      <aside class="cv-contact" aria-label="Contact">
+        <h2>Contact</h2>
+        <Contact items={contact} />
+      </aside>
+    </header>
+
+    {
+      rest.map((section) => (
+        <section class={`cv-section cv-${section.slug}`} id={section.slug}>
+          <h2 class="section-title">{section.title}</h2>
+          {section.html && <div class="section-body" set:html={section.html} />}
+          {section.jobs.map((job) => (
+            <Job job={job} />
+          ))}
+        </section>
+      ))
+    }
+
+    <p class="cv-source">
+      This page is generated from <a href="/cv.md">cv.md</a>, the canonical version.
+    </p>
+  </div>
+</Base>

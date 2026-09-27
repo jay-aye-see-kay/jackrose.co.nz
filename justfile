@@ -27,3 +27,7 @@ preview: build
 # Build then deploy dist/ to Cloudflare Pages
 deploy: build
     wrangler pages deploy
+
+# Screenshot a page of the running dev server: just shot [--mobile] [--print] /cv
+shot *args:
+    node scripts/shot.mjs {{args}}
