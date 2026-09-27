@@ -2,19 +2,14 @@
 import Base from "../layouts/Base.astro";
 import Contact from "../components/cv/Contact.astro";
 import { Content as About } from "../../copy/about.md";
-import { contact, currentJob } from "../lib/cv";
+import { contact } from "../lib/cv";
 import { site } from "../site";
 
 // The site links back to itself; not much use on the site.
 const channels = contact.filter((c) => c.label.toLowerCase() !== "site");
 
-const job = currentJob();
-const role = job?.roles[0];
-const spec = [
-  ...(role ? [{ label: "Role", value: [role.title, role.team].filter(Boolean).join(", ") }] : []),
-  ...(job?.company ? [{ label: "At", value: job.company }] : []),
-  ...site.spec,
-];
+const rev = new Date().toLocaleDateString("en-AU", { month: "short", year: "numeric" });
+const spec = [...site.spec, { label: "Rev.", value: rev }];
 ---
 
 <Base
@@ -27,7 +22,6 @@ const spec = [
       <div class="prose">
         <About />
       </div>
-      <p class="cta"><a href="/cv">Read the CV →</a></p>
     </section>
 
     <aside class="home-spec panel" aria-labelledby="spec-label">
