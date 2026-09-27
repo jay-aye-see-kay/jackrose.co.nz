@@ -29,7 +29,7 @@ Strongest with Go and TypeScript, capable with many more.
 - Designed and built our internal MCP server in late 2025 providing agents company context such as internal package docs, developer analytics, and engineering standards - 100 weekly active users (70% of engineers) within 3 months
 - Continued leading development of Hotel CLI, including adding a plugin system enabling other teams to contribute; 2 teams have plugins so far
 
-**Senior SRE - Developer Experience Platform (Jun 2023 - May 2024)**
+**Senior SRE - Developer Experience (Jun 2023 - May 2024)**
 - Drove the local developer environments initiative end-to-end: user interviews, an engineering standard, and a data-led rollout focusing on high value repos reaching 80% of where work happens - reducing repo onboarding from days to minutes
 - As a team we cut new-joiner time-to-tenth-PR from 90 days to under 30 within a year
 - Led the development of Hotel, an internal Go CLI tool that automates setup and maintenance of developer laptops, including corporate proxy fixes, and self-service diagnostics (`hotel doctor`)
