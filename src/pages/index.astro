@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Contact from "../components/cv/Contact.astro";
 import { Content as About } from "../../copy/about.md";
-import { contact, currentJob, formatDuration } from "../lib/cv";
+import { contact, currentJob } from "../lib/cv";
 import { site } from "../site";
 
 // The site links back to itself; not much use on the site.
@@ -12,9 +12,7 @@ const job = currentJob();
 const role = job?.roles[0];
 const spec = [
   ...(role ? [{ label: "Role", value: [role.title, role.team].filter(Boolean).join(", ") }] : []),
-  ...(job?.company && job.period
-    ? [{ label: "At", value: `${job.company}, ${formatDuration(job.period.months)}` }]
-    : []),
+  ...(job?.company ? [{ label: "At", value: job.company }] : []),
   ...site.spec,
 ];
 ---

@@ -43,8 +43,6 @@ export interface Section {
 }
 
 export interface Job {
-  /** Stable anchor, e.g. "culture-amp-2022". */
-  id: string;
   heading: string;
   title: string;
   company?: string;
@@ -71,8 +69,6 @@ export interface Period {
   label: string;
   start: YearMonth;
   end: YearMonth | "present";
-  /** Inclusive month count, "present" measured to build time. */
-  months: number;
 }
 
 export interface YearMonth {
@@ -106,18 +102,13 @@ function parseYearMonth(text: string): YearMonth | undefined {
   return { year: Number(m[2]), month };
 }
 
-const now = new Date();
-const NOW: YearMonth = { year: now.getFullYear(), month: now.getMonth() + 1 };
-
 export function parsePeriod(text: string): Period | undefined {
   const m = text.match(/^(.+?)\s+-\s+(.+)$/);
   if (!m) return undefined;
   const start = parseYearMonth(m[1]);
   const end = /^present$/i.test(m[2].trim()) ? "present" : parseYearMonth(m[2]);
   if (!start || !end) return undefined;
-  const e = end === "present" ? NOW : end;
-  const months = (e.year - start.year) * 12 + (e.month - start.month) + 1;
-  return { label: text.trim(), start, end, months };
+  return { label: text.trim(), start, end };
 }
 
 /** "Jul 2022 – Present" (en dash, for display). */
@@ -125,18 +116,8 @@ export function formatPeriod(p: Period): string {
   return p.label.replace(/\s+-\s+/, " – ");
 }
 
-/** "4 yrs 2 mos", "11 mos", "2 yrs" */
-export function formatDuration(months: number): string {
-  const y = Math.floor(months / 12);
-  const m = months % 12;
-  const parts = [];
-  if (y) parts.push(`${y} yr${y === 1 ? "" : "s"}`);
-  if (m) parts.push(`${m} mo${m === 1 ? "" : "s"}`);
-  return parts.join(" ") || "0 mos";
-}
-
 /** "Jul 2022 - Present - Multiple Roles @ Culture Amp" */
-function parseJobHeading(text: string): Omit<Job, "id" | "html" | "roles"> {
+function parseJobHeading(text: string): Omit<Job, "html" | "roles"> {
   const m = text.match(
     /^([A-Za-z]{3,} \d{4}\s+-\s+(?:Present|[A-Za-z]{3,} \d{4}))\s+-\s+(.+)$/i,
   );
@@ -229,9 +210,7 @@ function asRole(p: Paragraph): Role | undefined {
 }
 
 function parseJob(heading: Heading, body: RootContent[]): Job {
-  const head = parseJobHeading(toString(heading));
-  const id = slugify(`${head.company ?? head.title} ${head.period?.start.year ?? ""}`);
-  const job: Job = { ...head, id, html: "", roles: [] };
+  const job: Job = { ...parseJobHeading(toString(heading)), html: "", roles: [] };
   let role: Role | undefined;
   for (const node of body) {
     const r = node.type === "paragraph" ? asRole(node) : undefined;

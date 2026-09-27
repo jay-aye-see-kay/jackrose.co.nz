@@ -327,10 +327,6 @@ li::marker {
   color: var(--ink-soft);
 }
 
-.job-duration {
-  color: var(--red);
-}
-
 .job-head {
   margin: 0 0 0.35rem;
   font-size: 1.0625rem;
@@ -453,128 +449,6 @@ code {
   color: var(--ink-soft);
 }
 
-/* ---- timeline: the whole career, to scale ---- */
-
-.timeline {
-  margin: 0 0 1.75rem;
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.timeline-labels {
-  position: relative;
-  height: 1.9em;
-}
-
-.timeline-label {
-  position: absolute;
-  bottom: 0.35rem;
-  line-height: 1;
-  white-space: nowrap;
-  color: var(--red);
-  font-weight: 700;
-}
-/* a small leader from label down to the bar */
-.timeline-label::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.35rem;
-  width: 1px;
-  height: 0.35rem;
-  background: var(--red);
-}
-.timeline-label.is-right::after {
-  left: auto;
-  right: 0;
-}
-
-.timeline-bar {
-  position: relative;
-  height: 0.9rem;
-  border-bottom: 1px solid var(--ink);
-}
-
-.timeline-seg {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  background: var(--ink);
-  /* hairline of paper between adjacent jobs */
-  box-shadow: inset -1px 0 0 var(--paper);
-}
-.timeline-seg.is-long {
-  background: var(--red);
-}
-.timeline-seg:hover {
-  top: -3px;
-  bottom: -3px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-.job {
-  scroll-margin-top: 1.5rem;
-}
-/* arrived at from the timeline */
-.job:target {
-  animation: target-flash 2.4s ease-out;
-}
-@keyframes target-flash {
-  from {
-    background: color-mix(in srgb, var(--red) 9%, var(--paper));
-    box-shadow: 0 0 0 0.75rem color-mix(in srgb, var(--red) 9%, var(--paper));
-  }
-  to {
-    background: var(--paper);
-    box-shadow: 0 0 0 0.75rem var(--paper);
-  }
-}
-.timeline-seg.is-gap {
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--ink-soft) 0 1px,
-    transparent 1px 4px
-  );
-}
-
-.timeline-axis {
-  position: relative;
-  height: 2.2em;
-  color: var(--ink-soft);
-}
-
-.timeline-tick {
-  position: absolute;
-  top: 0;
-  width: 1px;
-  height: 0.25rem;
-  background: var(--ink);
-}
-.timeline-tick.is-major {
-  height: 0.45rem;
-}
-.timeline-tick span {
-  position: absolute;
-  top: 0.55rem;
-  left: 0;
-  transform: translateX(-50%);
-}
-.timeline-tick.is-start span {
-  transform: none;
-}
-.timeline-tick.is-end span {
-  transform: translateX(-100%);
-}
-
 /* early: long-ago, pre-career jobs recede */
 .job-early {
   padding: 0.6rem 0;
@@ -595,9 +469,6 @@ html {
 }
 .job-early .job-body ul {
   font-size: 0.875rem;
-}
-.job-early .job-duration {
-  color: inherit;
 }
 
 .cv-source {
@@ -671,10 +542,6 @@ html {
   .job {
     grid-template-columns: 1fr;
   }
-  .timeline-duration,
-  .timeline-tick:not(.is-quad) span {
-    display: none;
-  }
   .job-when {
     flex-direction: row;
     gap: 0.75rem;
@@ -734,7 +601,7 @@ html {
     margin-bottom: 1.5rem;
   }
   .cv-section {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
   }
   .job {
     padding: 0.6rem 0;

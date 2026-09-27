@@ -38,7 +38,7 @@ patterns and the page lays itself out:
   get special placement at the top; any other section renders generically,
   so new sections need no code.
 - `### Mon YYYY - Mon YYYY|Present - Title @ Company (Note)`: a job. Dates
-  go in the left column with a computed duration.
+  go in the left column.
 - `**Role - Team (Mon YYYY - Mon YYYY)**` then a list: a **roomy** role
   (used for recent, detailed jobs).
 - `**Role (Mon YYYY - Mon YYYY)** one line of text`: a **compact** role
@@ -63,7 +63,7 @@ just shot /cv                 # full page, 1280 wide
 just shot --mobile /cv        # 390 wide, 2x
 just shot --viewport /        # above the fold only
 just shot --print /cv         # PDF + print-media PNG, reports page count
-just shot --el=.timeline /cv  # one element at 2x
+just shot --el=.cv-contact /cv  # one element at 2x
 ```
 
 Output goes to `.shots/`, not `/tmp`: the sandbox's `/tmp` isn't the one

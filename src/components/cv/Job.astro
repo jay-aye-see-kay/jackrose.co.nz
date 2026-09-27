@@ -1,5 +1,5 @@
 ---
-import { formatDuration, formatPeriod, type Job } from "../../lib/cv";
+import { formatPeriod, type Job } from "../../lib/cv";
 
 interface Props {
   job: Job;
@@ -26,16 +26,9 @@ const early =
   now.getFullYear() * 12 + now.getMonth() - (end.year * 12 + end.month - 1) >= EARLY_YEARS * 12;
 ---
 
-<article id={job.id} class:list={["job", `job-${kind}`, { "job-multi": multiRole, "job-early": early }]}>
+<article class:list={["job", `job-${kind}`, { "job-multi": multiRole, "job-early": early }]}>
   <div class="job-when">
-    {
-      job.period && (
-        <>
-          <span class="job-dates">{formatPeriod(job.period)}</span>
-          <span class="job-duration">{formatDuration(job.period.months)}</span>
-        </>
-      )
-    }
+    {job.period && <span class="job-dates">{formatPeriod(job.period)}</span>}
   </div>
 
   <div class="job-main">
