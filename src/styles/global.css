@@ -605,6 +605,25 @@ html {
   color: var(--ink-soft);
 }
 
+/* ---------------------------------------------------------- 404 */
+
+.not-found {
+  padding: 2rem 0 1rem;
+}
+.not-found-fig {
+  margin: 0;
+  color: var(--red);
+}
+.not-found-title {
+  margin: 0.25rem 0 1.5rem;
+  font-size: clamp(3rem, 14vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
 /* ---------------------------------------------------------- footer */
 
 .colophon {
