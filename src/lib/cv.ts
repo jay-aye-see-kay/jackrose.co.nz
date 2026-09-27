@@ -43,6 +43,8 @@ export interface Section {
 }
 
 export interface Job {
+  /** Stable anchor, e.g. "culture-amp-2022". */
+  id: string;
   heading: string;
   title: string;
   company?: string;
@@ -134,7 +136,7 @@ export function formatDuration(months: number): string {
 }
 
 /** "Jul 2022 - Present - Multiple Roles @ Culture Amp" */
-function parseJobHeading(text: string): Omit<Job, "html" | "roles"> {
+function parseJobHeading(text: string): Omit<Job, "id" | "html" | "roles"> {
   const m = text.match(
     /^([A-Za-z]{3,} \d{4}\s+-\s+(?:Present|[A-Za-z]{3,} \d{4}))\s+-\s+(.+)$/i,
   );
@@ -227,7 +229,9 @@ function asRole(p: Paragraph): Role | undefined {
 }
 
 function parseJob(heading: Heading, body: RootContent[]): Job {
-  const job: Job = { ...parseJobHeading(toString(heading)), html: "", roles: [] };
+  const head = parseJobHeading(toString(heading));
+  const id = slugify(`${head.company ?? head.title} ${head.period?.start.year ?? ""}`);
+  const job: Job = { ...head, id, html: "", roles: [] };
   let role: Role | undefined;
   for (const node of body) {
     const r = node.type === "paragraph" ? asRole(node) : undefined;

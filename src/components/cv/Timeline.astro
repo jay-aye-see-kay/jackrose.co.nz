@@ -2,7 +2,8 @@
 // A to-scale strip of the whole career. Long tenures (3+ years at one
 // company, across stints) are red and labelled; everything else is ink.
 // Purely a visual summary of the jobs below it, so it's hidden from
-// assistive tech (the job list carries the same information).
+// assistive tech (the job list carries the same information). Segments link
+// to their job for mouse users; they're kept out of the tab order.
 import { formatDuration, type Job, type YearMonth } from "../../lib/cv";
 
 interface Props {
@@ -38,6 +39,7 @@ const segments = dated.map((j) => {
   const labelled =
     long && p.months === Math.max(...dated.filter((d) => (d.company ?? d.title) === name).map((d) => d.period!.months));
   return {
+    id: j.id,
     name,
     title: `${name}: ${j.title}, ${p.label} (${formatDuration(p.months)})`,
     from,
@@ -78,7 +80,9 @@ for (let y = firstYear; y <= lastYear; y++) {
   <div class="timeline-bar">
     {
       segments.map((s) => (
-        <span
+        <a
+          href={`#${s.id}`}
+          tabindex="-1"
           class:list={["timeline-seg", { "is-long": s.long, "is-gap": s.gap }]}
           style={`left: ${s.from}%; width: ${s.width}%`}
           title={s.title}

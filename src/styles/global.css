@@ -507,6 +507,36 @@ code {
 .timeline-seg.is-long {
   background: var(--red);
 }
+.timeline-seg:hover {
+  top: -3px;
+  bottom: -3px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+.job {
+  scroll-margin-top: 1.5rem;
+}
+/* arrived at from the timeline */
+.job:target {
+  animation: target-flash 2.4s ease-out;
+}
+@keyframes target-flash {
+  from {
+    background: color-mix(in srgb, var(--red) 9%, var(--paper));
+    box-shadow: 0 0 0 0.75rem color-mix(in srgb, var(--red) 9%, var(--paper));
+  }
+  to {
+    background: var(--paper);
+    box-shadow: 0 0 0 0.75rem var(--paper);
+  }
+}
 .timeline-seg.is-gap {
   background: repeating-linear-gradient(
     -45deg,
